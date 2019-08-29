@@ -1,0 +1,143 @@
+<!DOCTYPE html><html lang="en"><head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><meta name="author" content="John Doe"><meta name="renderer" content="webkit"><meta name="copyright" content="John Doe"><meta name="keywords" content="Hexo"><meta name="description" content="null"><meta name="Cache-Control" content="no-cache"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>JS之正则表达式 · X丶NNNNN</title><link rel="stylesheet" href="/css/style.css?v=2018.7.9"><link rel="stylesheet" href="/css/animation.css?v=2018.7.9"><link rel="icon" href="/img/assets/favicon.ico"><link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css?version=1.5.6"><!-- scripts--><script>(function( w ){
+  "use strict";
+  // rel=preload support test
+  if( !w.loadCSS ){
+    w.loadCSS = function(){};
+  }
+  // define on the loadCSS obj
+  var rp = loadCSS.relpreload = {};
+  // rel=preload feature support test
+  // runs once and returns a function for compat purposes
+  rp.support = (function(){
+    var ret;
+    try {
+      ret = w.document.createElement( "link" ).relList.supports( "preload" );
+    } catch (e) {
+      ret = false;
+    }
+    return function(){
+      return ret;
+    };
+  })();
+
+  // if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+  // then change that media back to its intended value on load
+  rp.bindMediaToggle = function( link ){
+    // remember existing media attr for ultimate state, or default to 'all'
+    var finalMedia = link.media || "all";
+
+    function enableStylesheet(){
+      link.media = finalMedia;
+    }
+
+    // bind load handlers to enable media
+    if( link.addEventListener ){
+      link.addEventListener( "load", enableStylesheet );
+    } else if( link.attachEvent ){
+      link.attachEvent( "onload", enableStylesheet );
+    }
+
+    // Set rel and non-applicable media type to start an async request
+    // note: timeout allows this to happen async to let rendering continue in IE
+    setTimeout(function(){
+      link.rel = "stylesheet";
+      link.media = "only x";
+    });
+    // also enable media after 3 seconds,
+    // which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+    setTimeout( enableStylesheet, 3000 );
+  };
+
+  // loop through link elements in DOM
+  rp.poly = function(){
+    // double check this to prevent external calls from running
+    if( rp.support() ){
+      return;
+    }
+    var links = w.document.getElementsByTagName( "link" );
+    for( var i = 0; i < links.length; i++ ){
+      var link = links[ i ];
+      // qualify links to those with rel=preload and as=style attrs
+      if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+        // prevent rerunning on link
+        link.setAttribute( "data-loadcss", true );
+        // bind listeners to toggle media back
+        rp.bindMediaToggle( link );
+      }
+    }
+  };
+
+  // if unsupported, run the polyfill
+  if( !rp.support() ){
+    // run once at least
+    rp.poly();
+
+    // rerun poly on an interval until onload
+    var run = w.setInterval( rp.poly, 500 );
+    if( w.addEventListener ){
+      w.addEventListener( "load", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    } else if( w.attachEvent ){
+      w.attachEvent( "onload", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    }
+  }
+
+
+  // commonjs
+  if( typeof exports !== "undefined" ){
+    exports.loadCSS = loadCSS;
+  }
+  else {
+    w.loadCSS = loadCSS;
+  }
+}( typeof global !== "undefined" ? global : this ) );</script><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" defer></script><script src="/js/main.js?v=2018.7.9" defer></script><!-- fancybox--><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script><!-- busuanzi--><script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script></head><body><section class="profile-close" id="cxo-profile"><div class="profile-avatar"><i class="fa fa-caret-left"></i><img src="/img/assets/未标题-1.png"></div><!--.profile-saying
+  i.fa.fa-comment
+  .saying--><div class="cxo-profile-inner"><div class="profile-name">X丶NNNNN</div><div class="read-progress"></div></div></section><header id="cxo-intro" style="height: 70vh;background-image: url(/img/intro/63513874_p0.jpg);"><nav id="cxo-intro-nav"><section><div class="intro-nav-title"><a href="/">Welcome to my Blog!</a></div><div class="intro-nav-label-box"><a href="/">Home</a><a href="/about/">About</a><a href="/archives/">Archives</a><a href="/tags/">Tags</a></div><i class="fa fa-bars intro-nav-menu"><div class="intro-nav-drop"><a href="/">Home</a><a href="/about/">About</a><a href="/archives/">Archives</a><a href="/tags/">Tags</a></div></i><div class="clear"></div></section></nav><h1 class="post-title">JS之正则表达式</h1><div class="post-intros"><div class="post-intro-meta"><span class="post-intro-time"><i class="post-intro-calendar fa fa-calendar"></i><span>2019-08-29</span></span></div></div></header><article class="cxo-up" id="cxo-content-outer"><section id="cxo-content-inner"><article class="article-entry" id="post"><p>接着开新坑，之前正则基本上是不会，想用啥直接google但毕竟不是个长久之计。所以第二篇我决定搞正则。、<br>参考资料有：<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions" target="_blank" rel="noopener">MDN正则表达式部分</a>、<a href="http://es6.ruanyifeng.com/#docs/regex" target="_blank" rel="noopener">阮一峰的 ECMAScript 6 入门</a>、JavaScript高级程序设计 —— RegExp类型</p>
+<h2 id="创建正则表达式"><a href="#创建正则表达式" class="headerlink" title="创建正则表达式"></a>创建正则表达式</h2><h3 id="正则表达式字面量"><a href="#正则表达式字面量" class="headerlink" title="正则表达式字面量"></a>正则表达式字面量</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> re = <span class="regexp">/ab+c/</span></span><br></pre></td></tr></table></figure>
+
+<p>使用正则表达式字面量方法为正则表达式提供了脚本加载后的编译。当正则表达式保持不变时，使用此方法可获得更好的性能。</p>
+<h3 id="RegExp-对象的构造函数"><a href="#RegExp-对象的构造函数" class="headerlink" title="RegExp 对象的构造函数"></a>RegExp 对象的构造函数</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> re = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">'ab+c'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>使用构造函数为正则表达式提供了运行时的编译。使用构造函数的方式，当你知道正则表达式的模式将会改变，或者不知道模式，并且从其他来源获取他（如：用户输入）</p>
+<h2 id="使用正则表达式"><a href="#使用正则表达式" class="headerlink" title="使用正则表达式"></a>使用正则表达式</h2><h3 id="使用简单模式"><a href="#使用简单模式" class="headerlink" title="使用简单模式"></a>使用简单模式</h3><p>简单模式是由你想直接找到的字符串构成. 如：/asd/ 这个模式能且只能匹配’asd’按照顺序同时出现的情况。</p>
+<h3 id="使用特殊字符串"><a href="#使用特殊字符串" class="headerlink" title="使用特殊字符串"></a>使用特殊字符串</h3><h4 id="断言"><a href="#断言" class="headerlink" title="断言"></a>断言</h4><p>表示一个匹配在某些条件下发生。断言包含先行断言、后行断言和条件表达式。</p>
+<h4 id="便边界"><a href="#便边界" class="headerlink" title="便边界"></a>便边界</h4><p>表示行和单词的开始和结尾</p>
+<h4 id="字符串类别"><a href="#字符串类别" class="headerlink" title="字符串类别"></a>字符串类别</h4><p>区分不同类型的字符串，例如区分字母和数字。</p>
+<h4 id="组和范围"><a href="#组和范围" class="headerlink" title="组和范围"></a>组和范围</h4><p>表示表达式字符的分组和范围</p>
+<h4 id="量词"><a href="#量词" class="headerlink" title="量词"></a>量词</h4><p>表示匹配的字符串或表达式的数量。</p>
+<h4 id="Unicode属性转义"><a href="#Unicode属性转义" class="headerlink" title="Unicode属性转义"></a>Unicode属性转义</h4><p>基于 unicode 字符属性区分字符。例如大写和小写字母、数字符号和标点。</p>
+<p>###正则表达式中的特殊字符</p>
+<h4 id><a href="#" class="headerlink" title="\"></a>\</h4><p>含义：在非特殊字符之前的反斜杠表示下个字符是特殊字符。在特殊字符之前的反斜杠表示下一个字符不是特殊字符，应该按照字面理解。如果你想将字符串传递给RegExp构造函数，不要忘记在字符串字面两种反斜杠是转义字符。所以为了在模式中添加一个反斜杠，需要在字符串字面量中转义它。</p>
+<h4 id="-1"><a href="#-1" class="headerlink" title="^"></a>^</h4><p>含义：匹配输入的开始。如果多行标志被设置为true，那么也匹配换行符后紧跟的位置。<br>如：<strong>/^A/ 不会匹配’anA’，会匹配’Ana’</strong></p>
+<h4 id="-2"><a href="#-2" class="headerlink" title="$"></a>$</h4><p>匹配输入的结束。如果多行标示被设置为true，那么也匹配换行符前的位置。<br>如：<strong>/$A/ 会匹配’anA’，不会匹配’Ana’</strong></p>
+<h4 id="-3"><a href="#-3" class="headerlink" title="*"></a>*</h4><p>匹配前一个表达式零次或多次。等价于{0,}。<br>如<strong>/bo*/ 可以匹配 ‘booooo’、可以匹配 ‘bxxxxxxxxx’（不完全匹配 0次）、不匹配 ‘oooooox’(因为从b开始匹配，然而却没有b)所以不匹配。</strong></p>
+<h4 id="-4"><a href="#-4" class="headerlink" title="+"></a>+</h4><p>匹配前面一个表达式一次或者多次。等价于{1,}。<br>如:<strong>/bo*/ 可以匹配 ‘booooo’、可以匹配 ‘bxxxxxxxxx’（不匹配）、不匹配 ‘oooooox’(因为从b开始匹配，然而却没有b)所以不匹配。</strong></p>
+<h4 id="-5"><a href="#-5" class="headerlink" title="?"></a>?</h4><p>匹配前面一个表达式0次或者1次。等价于{0,1},如果**紧跟在任何量词 * + ？ 或 {} 的后面将会使两次变成非贪婪（匹配尽量少的字符），和缺省使用的贪婪模式（匹配尽量多的字符）正好相反。</p>
+<h4 id="小数点"><a href="#小数点" class="headerlink" title=". (小数点)"></a>. (小数点)</h4><p>默认匹配除换行之外的任何单个字符。<br>如：<strong>/.n/将会匹配”nay, an apple is on the tree”中的’an’和’on’，但不会匹配’nay’(因为n之前没有字符)</strong></p>
+<h4 id="x"><a href="#x" class="headerlink" title="(?:x)"></a>(?:x)</h4><p>匹配’x’但是不记住匹配项。这种括号叫做非捕获括号。是的你能够定义与正则表达式运算符一起使用的子表达式。</p>
+<h4 id="x-y"><a href="#x-y" class="headerlink" title="x(?=y)"></a>x(?=y)</h4><p>匹配’x’仅仅当’x’后面跟着’y’。这种叫做先行断言。</p>
+<h4 id="lt-y-x"><a href="#lt-y-x" class="headerlink" title="(?&lt;=y)x"></a>(?&lt;=y)x</h4><p>匹配’x’仅仅当’x’前面是’y’。这种叫做后行断言。</p>
+<h4 id="x-y-1"><a href="#x-y-1" class="headerlink" title="x(?!y)"></a>x(?!y)</h4><p>仅仅当’x’后面不跟着’y’时匹配’x’,这被称为正向否定查找。</p>
+<h4 id="lt-y-x-1"><a href="#lt-y-x-1" class="headerlink" title="(?&lt;!y)x"></a>(?&lt;!y)x</h4><p>仅仅当’x’前面不是’y’时匹配’x’,这被称为反向否定查找。</p>
+<h4 id="x-y-2"><a href="#x-y-2" class="headerlink" title="x|y"></a>x|y</h4><p>匹配’x’或者’y’</p>
+</article><!-- lincense--><div class="post-paginator"><a class="nextSlogan" href="/2019/08/21/JS高程之数组篇/" title="JS高程之数组篇"><span>NextPost ></span><br><span class="nextTitle">JS高程之数组篇</span></a><div class="clear"></div></div><div id="comment"><div id="container"></div><link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css"><script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script><script>var gitment = new Gitment({
+  id: 'JS之正则表达式',
+  owner: 'X_NNNNN',
+  repo: 'blogOfX_NNNNN.github.io',
+  oauth: {
+    client_id: 'a61c2a7fac0543d1cc52',
+    client_secret: 'af6b1d3e0d8289a66e9c6d60b93214b3fa8fd663',
+  },
+})
+gitment.render('container')</script></div></section></article><footer id="cxo-footer-outer"><div id="cxo-footer-inner"><p class="footer-container"><span>Site by </span><a href="http://hexo.io"><span>Hexo</span></a><span> | theme </span><a href="https://github.com/Longlongyu/hexo-theme-Cxo"><span>Cxo</span></a></p><i class="fa fa-user"> </i><span id="busuanzi_value_site_uv"></span><span> | </span><i class="fa fa-eye"> </i><span id="busuanzi_value_site_pv"></span><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?" + 'ab2813deffd5aaf5cab295d48b65151e';
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();</script></div></footer><!-- catelog--><div class="toc-wrapper" style="top: 70vh;"><div class="toc-catalog"><i class="fa fa-list"> </i><span>CATALOG</span></div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#创建正则表达式"><span class="toc-number">1.</span> <span class="toc-text">创建正则表达式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#正则表达式字面量"><span class="toc-number">1.1.</span> <span class="toc-text">正则表达式字面量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RegExp-对象的构造函数"><span class="toc-number">1.2.</span> <span class="toc-text">RegExp 对象的构造函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用正则表达式"><span class="toc-number">2.</span> <span class="toc-text">使用正则表达式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用简单模式"><span class="toc-number">2.1.</span> <span class="toc-text">使用简单模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用特殊字符串"><span class="toc-number">2.2.</span> <span class="toc-text">使用特殊字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#断言"><span class="toc-number">2.2.1.</span> <span class="toc-text">断言</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#便边界"><span class="toc-number">2.2.2.</span> <span class="toc-text">便边界</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#字符串类别"><span class="toc-number">2.2.3.</span> <span class="toc-text">字符串类别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#组和范围"><span class="toc-number">2.2.4.</span> <span class="toc-text">组和范围</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#量词"><span class="toc-number">2.2.5.</span> <span class="toc-text">量词</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Unicode属性转义"><span class="toc-number">2.2.6.</span> <span class="toc-text">Unicode属性转义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">2.2.7.</span> <span class="toc-text">\</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#-1"><span class="toc-number">2.2.8.</span> <span class="toc-text">^</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#-2"><span class="toc-number">2.2.9.</span> <span class="toc-text">$</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#-3"><span class="toc-number">2.2.10.</span> <span class="toc-text">*</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#-4"><span class="toc-number">2.2.11.</span> <span class="toc-text">+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#-5"><span class="toc-number">2.2.12.</span> <span class="toc-text">?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#小数点"><span class="toc-number">2.2.13.</span> <span class="toc-text">. (小数点)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#x"><span class="toc-number">2.2.14.</span> <span class="toc-text">(?:x)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#x-y"><span class="toc-number">2.2.15.</span> <span class="toc-text">x(?=y)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#lt-y-x"><span class="toc-number">2.2.16.</span> <span class="toc-text">(?&lt;=y)x</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#x-y-1"><span class="toc-number">2.2.17.</span> <span class="toc-text">x(?!y)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#lt-y-x-1"><span class="toc-number">2.2.18.</span> <span class="toc-text">(?&lt;!y)x</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#x-y-2"><span class="toc-number">2.2.19.</span> <span class="toc-text">x|y</span></a></li></ol></li></ol></li></ol></div><!-- top--><i class="fa fa-arrow-up close" id="go-up" aria-hidden="true"></i><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":70,"vOffset":30},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
