@@ -1,0 +1,130 @@
+<!DOCTYPE html><html lang="en"><head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><meta name="author" content="John Doe"><meta name="renderer" content="webkit"><meta name="copyright" content="John Doe"><meta name="keywords" content="Hexo"><meta name="description" content="null"><meta name="Cache-Control" content="no-cache"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>JS之理解对象 · X丶NNNNN</title><link rel="stylesheet" href="/css/style.css?v=2018.7.9"><link rel="stylesheet" href="/css/animation.css?v=2018.7.9"><link rel="icon" href="/img/assets/favicon.ico"><link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css?version=1.5.6"><!-- scripts--><script>(function( w ){
+  "use strict";
+  // rel=preload support test
+  if( !w.loadCSS ){
+    w.loadCSS = function(){};
+  }
+  // define on the loadCSS obj
+  var rp = loadCSS.relpreload = {};
+  // rel=preload feature support test
+  // runs once and returns a function for compat purposes
+  rp.support = (function(){
+    var ret;
+    try {
+      ret = w.document.createElement( "link" ).relList.supports( "preload" );
+    } catch (e) {
+      ret = false;
+    }
+    return function(){
+      return ret;
+    };
+  })();
+
+  // if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+  // then change that media back to its intended value on load
+  rp.bindMediaToggle = function( link ){
+    // remember existing media attr for ultimate state, or default to 'all'
+    var finalMedia = link.media || "all";
+
+    function enableStylesheet(){
+      link.media = finalMedia;
+    }
+
+    // bind load handlers to enable media
+    if( link.addEventListener ){
+      link.addEventListener( "load", enableStylesheet );
+    } else if( link.attachEvent ){
+      link.attachEvent( "onload", enableStylesheet );
+    }
+
+    // Set rel and non-applicable media type to start an async request
+    // note: timeout allows this to happen async to let rendering continue in IE
+    setTimeout(function(){
+      link.rel = "stylesheet";
+      link.media = "only x";
+    });
+    // also enable media after 3 seconds,
+    // which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+    setTimeout( enableStylesheet, 3000 );
+  };
+
+  // loop through link elements in DOM
+  rp.poly = function(){
+    // double check this to prevent external calls from running
+    if( rp.support() ){
+      return;
+    }
+    var links = w.document.getElementsByTagName( "link" );
+    for( var i = 0; i < links.length; i++ ){
+      var link = links[ i ];
+      // qualify links to those with rel=preload and as=style attrs
+      if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+        // prevent rerunning on link
+        link.setAttribute( "data-loadcss", true );
+        // bind listeners to toggle media back
+        rp.bindMediaToggle( link );
+      }
+    }
+  };
+
+  // if unsupported, run the polyfill
+  if( !rp.support() ){
+    // run once at least
+    rp.poly();
+
+    // rerun poly on an interval until onload
+    var run = w.setInterval( rp.poly, 500 );
+    if( w.addEventListener ){
+      w.addEventListener( "load", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    } else if( w.attachEvent ){
+      w.attachEvent( "onload", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    }
+  }
+
+
+  // commonjs
+  if( typeof exports !== "undefined" ){
+    exports.loadCSS = loadCSS;
+  }
+  else {
+    w.loadCSS = loadCSS;
+  }
+}( typeof global !== "undefined" ? global : this ) );</script><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" defer></script><script src="/js/main.js?v=2018.7.9" defer></script><!-- fancybox--><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script><!-- busuanzi--><script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script></head><body><section class="profile-close" id="cxo-profile"><div class="profile-avatar"><i class="fa fa-caret-left"></i><img src="/img/assets/未标题-1.png"></div><!--.profile-saying
+  i.fa.fa-comment
+  .saying--><div class="cxo-profile-inner"><div class="profile-name">X丶NNNNN</div><div class="read-progress"></div></div></section><header id="cxo-intro" style="height: 70vh;background-image: url(/img/intro/63513874_p0.jpg);"><nav id="cxo-intro-nav"><section><div class="intro-nav-title"><a href="/">Welcome to my Blog!</a></div><div class="intro-nav-label-box"><a href="/">Home</a><a href="/about/">About</a><a href="/archives/">Archives</a><a href="/tags/">Tags</a></div><i class="fa fa-bars intro-nav-menu"><div class="intro-nav-drop"><a href="/">Home</a><a href="/about/">About</a><a href="/archives/">Archives</a><a href="/tags/">Tags</a></div></i><div class="clear"></div></section></nav><h1 class="post-title">JS之理解对象</h1><div class="post-intros"><div class="post-intro-meta"><span class="post-intro-time"><i class="post-intro-calendar fa fa-calendar"></i><span>2019-09-23</span></span></div></div></header><article class="cxo-up" id="cxo-content-outer"><section id="cxo-content-inner"><article class="article-entry" id="post"><p>过完中秋就变懒了，这几天看了看图解算法有点小收获。又赶上去去上海听泽野弘之的演奏会，所以这边的更新就慢了下来，这几天把他补上。</p>
+<h2 id="理解对象"><a href="#理解对象" class="headerlink" title="理解对象"></a>理解对象</h2><p> 创建自定义对象的最简单的方式就是创建一个Object实例<br> <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> person = &#123;</span><br><span class="line">	name: <span class="string">'xnnnnn'</span>,</span><br><span class="line">	age: <span class="number">22</span>,</span><br><span class="line">	sayName: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p> 对象有两种属性：数据属性和访问器属性</p>
+<h2 id="数据属性"><a href="#数据属性" class="headerlink" title="数据属性"></a>数据属性</h2><p>  数据属性包含一个数据值的位置（Value）。在这个位置能读取和写入值。有四个描述其行为的特性。</p>
+<h3 id="Configurable"><a href="#Configurable" class="headerlink" title="Configurable"></a>Configurable</h3><p> 表示能否通过delete删除属性从而重新定义属性，能否修改属性的特性，或者能否把属性修改为访问器属性。</p>
+<h3 id="Enumerable"><a href="#Enumerable" class="headerlink" title="Enumerable"></a>Enumerable</h3><p> 表示能否通过for-in 循环属性的特性。</p>
+<h3 id="Writable"><a href="#Writable" class="headerlink" title="Writable"></a>Writable</h3><p> 表示能否修改属性的值。</p>
+<h3 id="Value"><a href="#Value" class="headerlink" title="Value"></a>Value</h3><p> 包含这个属性的数据值。读取属性值的时候，把新值保存在这个位置。这个特性默认为undefined。</p>
+<hr>
+<p>对于上面那个的那个定义对象的方式，Configurable、Enumerable 都被设置成了 true，Value被设置成了指定的值。</p>
+<hr>
+<p>要修改属性的特性必须使用Object.defineProperty()。</p>
+<h2 id="Object-defineProperty"><a href="#Object-defineProperty" class="headerlink" title="Object.defineProperty()"></a>Object.defineProperty()</h2><p>这个方法接受三个参数：属性所在的对象、属性的名字、和一个描述对象。其中，描述符对象属性必须是：configurable、enumberable、writable和value。设置其中的一个或者多个，可以修改队形的特性值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> person = &#123;&#125;;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(person, <span class="string">'name'</span>,&#123;</span><br><span class="line">	writable: <span class="literal">false</span>,</span><br><span class="line">	value: <span class="string">'xnnnnn'</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(person.name) <span class="comment">// xnnnnn</span></span><br><span class="line">person.name = <span class="string">'boy'</span></span><br><span class="line"><span class="built_in">console</span>.log(person.name) <span class="comment">// xnnnnn ,因为通过Object.defineProperty把 writable 设置成了fasle所以这个不能修改</span></span><br></pre></td></tr></table></figure>
+
+</article><!-- lincense--><div class="post-paginator"><a class="nextSlogan" href="/2019/09/09/算法简介/" title="算法简介"><span>NextPost ></span><br><span class="nextTitle">算法简介</span></a><div class="clear"></div></div><div id="comment"><div id="container"></div><link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css"><script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script><script>var gitment = new Gitment({
+  id: 'JS之理解对象',
+  owner: 'X_NNNNN',
+  repo: 'blogOfX_NNNNN.github.io',
+  oauth: {
+    client_id: 'a61c2a7fac0543d1cc52',
+    client_secret: 'af6b1d3e0d8289a66e9c6d60b93214b3fa8fd663',
+  },
+})
+gitment.render('container')</script></div></section></article><footer id="cxo-footer-outer"><div id="cxo-footer-inner"><p class="footer-container"><span>Site by </span><a href="http://hexo.io"><span>Hexo</span></a><span> | theme </span><a href="https://github.com/Longlongyu/hexo-theme-Cxo"><span>Cxo</span></a></p><i class="fa fa-user"> </i><span id="busuanzi_value_site_uv"></span><span> | </span><i class="fa fa-eye"> </i><span id="busuanzi_value_site_pv"></span><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?" + 'ab2813deffd5aaf5cab295d48b65151e';
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();</script></div></footer><!-- catelog--><div class="toc-wrapper" style="top: 70vh;"><div class="toc-catalog"><i class="fa fa-list"> </i><span>CATALOG</span></div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#理解对象"><span class="toc-number">1.</span> <span class="toc-text">理解对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据属性"><span class="toc-number">2.</span> <span class="toc-text">数据属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Configurable"><span class="toc-number">2.1.</span> <span class="toc-text">Configurable</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Enumerable"><span class="toc-number">2.2.</span> <span class="toc-text">Enumerable</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Writable"><span class="toc-number">2.3.</span> <span class="toc-text">Writable</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Value"><span class="toc-number">2.4.</span> <span class="toc-text">Value</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Object-defineProperty"><span class="toc-number">3.</span> <span class="toc-text">Object.defineProperty()</span></a></li></ol></div><!-- top--><i class="fa fa-arrow-up close" id="go-up" aria-hidden="true"></i><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":70,"vOffset":30},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
