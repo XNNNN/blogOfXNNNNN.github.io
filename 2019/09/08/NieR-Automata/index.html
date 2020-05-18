@@ -1,121 +1,202 @@
-<!DOCTYPE html><html lang="en"><head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><meta name="author" content="John Doe"><meta name="renderer" content="webkit"><meta name="copyright" content="John Doe"><meta name="keywords" content="Hexo"><meta name="description" content="null"><meta name="Cache-Control" content="no-cache"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>NieR_Automata · X丶NNNNN</title><link rel="stylesheet" href="/css/style.css?v=2018.7.9"><link rel="stylesheet" href="/css/animation.css?v=2018.7.9"><link rel="icon" href="/img/assets/favicon.ico"><link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css?version=1.5.6"><!-- scripts--><script>(function( w ){
-  "use strict";
-  // rel=preload support test
-  if( !w.loadCSS ){
-    w.loadCSS = function(){};
-  }
-  // define on the loadCSS obj
-  var rp = loadCSS.relpreload = {};
-  // rel=preload feature support test
-  // runs once and returns a function for compat purposes
-  rp.support = (function(){
-    var ret;
-    try {
-      ret = w.document.createElement( "link" ).relList.supports( "preload" );
-    } catch (e) {
-      ret = false;
-    }
-    return function(){
-      return ret;
-    };
-  })();
-
-  // if preload isn't supported, get an asynchronous load by using a non-matching media attribute
-  // then change that media back to its intended value on load
-  rp.bindMediaToggle = function( link ){
-    // remember existing media attr for ultimate state, or default to 'all'
-    var finalMedia = link.media || "all";
-
-    function enableStylesheet(){
-      link.media = finalMedia;
-    }
-
-    // bind load handlers to enable media
-    if( link.addEventListener ){
-      link.addEventListener( "load", enableStylesheet );
-    } else if( link.attachEvent ){
-      link.attachEvent( "onload", enableStylesheet );
-    }
-
-    // Set rel and non-applicable media type to start an async request
-    // note: timeout allows this to happen async to let rendering continue in IE
-    setTimeout(function(){
-      link.rel = "stylesheet";
-      link.media = "only x";
-    });
-    // also enable media after 3 seconds,
-    // which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
-    setTimeout( enableStylesheet, 3000 );
-  };
-
-  // loop through link elements in DOM
-  rp.poly = function(){
-    // double check this to prevent external calls from running
-    if( rp.support() ){
-      return;
-    }
-    var links = w.document.getElementsByTagName( "link" );
-    for( var i = 0; i < links.length; i++ ){
-      var link = links[ i ];
-      // qualify links to those with rel=preload and as=style attrs
-      if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
-        // prevent rerunning on link
-        link.setAttribute( "data-loadcss", true );
-        // bind listeners to toggle media back
-        rp.bindMediaToggle( link );
-      }
-    }
-  };
-
-  // if unsupported, run the polyfill
-  if( !rp.support() ){
-    // run once at least
-    rp.poly();
-
-    // rerun poly on an interval until onload
-    var run = w.setInterval( rp.poly, 500 );
-    if( w.addEventListener ){
-      w.addEventListener( "load", function(){
-        rp.poly();
-        w.clearInterval( run );
-      } );
-    } else if( w.attachEvent ){
-      w.attachEvent( "onload", function(){
-        rp.poly();
-        w.clearInterval( run );
-      } );
-    }
-  }
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="keywords" content="xnnnnn">
+  <meta name="description" content="X_NNNNN的博客">
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="https://busuanzi.ibruce.info">
+  <link rel="dns-prefetch" href="https://at.alicdn.com">
+  
+  
+  
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+  <link rel="dns-prefetch" href="https://api.github.com">
+  <link rel="dns-prefetch" href="https://avatars3.githubusercontent.com">
+  
+  <link rel="stylesheet" type="text/css" href="/./style/main.css">
+	<link rel="shortcut icon" href="/favicon.ico" title="Favicon">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+	<title>NieR_Automata</title>
+  
+  
+</head>
+<body>
+  <canvas id="pattern-placeholder" height="230"></canvas>
+<div class="navbar-header">
+  <a class="blog-title" href="/">X_NNNNN</a>
+  <a class="face-img" href="/">
+    <img src="https://tva3.sinaimg.cn/crop.0.0.200.200.180/005Kc3C1jw8f2uep0hhkvj305k05k3yk.jpg">
+  </a>
+</div>
+<main>
+  <div class="article-title">
+    
+  
+  <h1 class="title">
+    NieR_Automata
+  </h1>
+  
 
 
-  // commonjs
-  if( typeof exports !== "undefined" ){
-    exports.loadCSS = loadCSS;
-  }
-  else {
-    w.loadCSS = loadCSS;
-  }
-}( typeof global !== "undefined" ? global : this ) );</script><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" defer></script><script src="/js/main.js?v=2018.7.9" defer></script><!-- fancybox--><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script><!-- busuanzi--><script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script></head><body><section class="profile-close" id="cxo-profile"><div class="profile-avatar"><i class="fa fa-caret-left"></i><img src="/img/assets/未标题-1.png"></div><!--.profile-saying
-  i.fa.fa-comment
-  .saying--><div class="cxo-profile-inner"><div class="profile-name">X丶NNNNN</div><div class="read-progress"></div></div></section><header id="cxo-intro" style="height: 70vh;background-image: url(/img/intro/63513874_p0.jpg);"><nav id="cxo-intro-nav"><section><div class="intro-nav-title"><a href="/">Welcome to my Blog!</a></div><div class="intro-nav-label-box"><a href="/">Home</a><a href="/about/">About</a><a href="/archives/">Archives</a><a href="/tags/">Tags</a></div><i class="fa fa-bars intro-nav-menu"><div class="intro-nav-drop"><a href="/">Home</a><a href="/about/">About</a><a href="/archives/">Archives</a><a href="/tags/">Tags</a></div></i><div class="clear"></div></section></nav><h1 class="post-title">NieR_Automata</h1><div class="post-intros"><div class="post-intro-meta"><span class="post-intro-time"><i class="post-intro-calendar fa fa-calendar"></i><span>2019-09-08</span></span></div></div></header><article class="cxo-up" id="cxo-content-outer"><section id="cxo-content-inner"><article class="article-entry" id="post"><p><img src="/image/NieR/NieR_Automata_20190907145247.jpg" alt></p>
+    <ul class="article-info">
+      <li>
+        发布
+        <time datetime="2019-09-08T13:01:36.000Z" itemprop="datePublished">2019-09-08</time>
+      </li>
+      <li>
+        
+    更新 <time datetime="2019-09-09T15:59:25.045Z" itemprop="dateUpdated">2019-09-09</time>
+
+      </li>
+      <li id="busuanzi_container_page_pv">
+        阅读 <span id="busuanzi_value_page_pv"></span>
+      </li>
+    </ul>
+  </div>
+  <div class="container">
+    <div class="article">
+      <div class="content">
+        
+        <p><img src="/image/NieR/NieR_Automata_20190907145247.jpg" alt></p>
 <h2 id="初识NieR"><a href="#初识NieR" class="headerlink" title="初识NieR"></a>初识NieR</h2><p> <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当时在我大三下班学期开学的时候，就在微博上看到有好多coser出一个戴眼罩的黑丝小姐姐.当时我的反应：“这哪个动漫里的？我这个资深死肥宅居然不知道”,于是我就开始搜这个才知道这是一款单机游戏，说实话当时我还没有接触太多的单机游戏，接触最多的还是lol。（因为那时候没啥钱，笔记本750Ti也就只能玩玩lol）。又看到PC上架了Steam顺手打开商店页面一看，没记错好像是4XX（告辞告辞），然后又过了一个礼拜？在当时大学的cosplay认识人的群里有人个人入了，跟我关系还不赖然后我就顺利白嫖倒手（共享大法好）。</p>
 <p><br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当时他选的简单模式就为了打那几个结局所以等他都通关了，在他不在线的时候下载下来之后我就开始离线模式开始玩。之后就是喜闻乐见的结果，进去默认画质没记错的话应该是25FPS。哈哈哈哈可以说毫无游戏体验。那也玩谁叫小姐姐那么好看了。光一开始的进工厂飞机那段我都打了好几次，（没过几天我舍友买的碟到了，在他那个ps4上一玩，原来弹幕能这么流畅的飞过来的？？？？），然后我就把我另外一个舍友张哥的大微星也共享了账号，趁着他上实训课睡觉的时候我也给装上了，你还别说降低点画质能到40-50吧。不过也不能总在实训课上玩。一是他也不总睡觉，有时候也用用电脑，二是这微星玩起游戏来，那风扇简直了，呼呼的。用脚丫子想这小子也没在打代码。所以还是回到我自己的电脑玩，就这么在25fps左右的帧数情况下，断断续续的我玩到了一周目的支线——寻找失踪的弟弟，这这支线任务把他送回去时候问了一连串的问题（比如小孩子怎么来的）。问的这2B和9S都不知道该怎么回答这个小机器人了哈哈哈哈。之后因为舍友也在玩嘛。用ps4玩的那么流畅进度肯定也比我快，他没一阵时间就全成就了。然后我就不玩了。就又回到了lol。然后实训、写毕设、实习。</p>
 <p><br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;直到实习的时候出了一个新番《女神异闻录》也就是我们常说的p5，当时因为动漫就演了一半没头没尾的，我就去查结局，发现他时游戏改的还是个独占ps4.当时刚实习手里有点钱，一狠心一跺脚买了个 ———— 二手的slim+女神异闻录的光盘（木的钱买新的也买不起pro，只能买个二手的玩玩）。</p>
 <h2 id="NieR"><a href="#NieR" class="headerlink" title="NieR"></a>NieR</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;玩了一段时间P5之后，在一次商店打折的时候又看见她了。打完折只需要150港币。二话没说就入了，又入了地平线和战神三的重置版。在那段时间我也能玩到比之前流畅的游戏了而且画质还比我那个笔记本的高。然后就很舒服的过了一周目+一周目能做的所有支线。这时候我觉得这世界还是美好的，虽然大家都有自己痛点但是还都坚强的在活着。比如说森林王国一帮机械生命体守护着永远也不会长大的国王。直到A2把那个Baby国王杀死之后，每次路过森林的时候他们还是会高喊着”为了国王”.波娃（游乐场BOSS）为了得到那个人认可一直在收集自动人形。每个BOSS都有自己理念。每个BOSS背后的故事塑造的非常完备。每周目一点一点的阐述给你。当三周目打完波娃的时候，我反而还开始同情她了。<br><br><img src="/image/NieR/NieR_Automata_20190127183004_1.jpg" alt><br><img src="/image/NieR/NieR_Automata_20190127183029_1.jpg" alt><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;比如营地里卖杂货的商人，”换掉这条腿，感觉就自己就不再是自己了”。还有与2B通讯的通讯官小姐姐给她发送花的照片的时候。作为一个玩家我能感受到他们是有血有肉有思想的NPC。还有一直嫌9S啰嗦打嘴仗的那个通讯官小姐姐，到三周目她出现的时候我是真的不想和她打，周旋了好一会发现好像只有把她杀了才能接着剧情开发展，而且打到最后9S也没有下得去手杀了他，最后还是A2过来解决掉了通讯官小姐姐。A2在某些时候也是够果断的。<br><img src="/image/NieR/NieR_Automata_20190907124235.jpg" alt><br><img src="/image/NieR/NieR_Automata_20190907124905.jpg" alt><br><img src="/image/NieR/NieR_Automata_20190907124957.jpg" alt><br><img src="/image/NieR/NieR_Automata_20190907125008.jpg" alt><br><img src="/image/NieR/NieR_Automata_20190907125127.jpg" alt><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二周目有印象的地方就是一开始9S观察一对哥弟机械生命体的时候选错了选项。然后直接出了个结局。。。。第二次才选对操控弟弟给已经停止运行的哥哥浇油。之后玩到海边发射台那块的时候又见到这哥俩了，不过这时候哥哥怎么不知道怎么活了。然后为了做支线我又把他给打死了。。。然后居然在三周目又出现了，不过这次哥哥只有一个身体一排头，带着一堆弟弟。没办法围了过剧情我又给都打死了。在我马上要到打死他哥哥时一群弟弟跪下求我放过他哥哥。这时候A2犹豫了一下（天哪A2也太善良了8）。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;说到A2，在一周目的她扎死Baby国王的时候。我心里：“人家在婴儿车里待着没招你没惹你的，你上来就给人家一刀？？？看我不把你打爆”。直到我在三周目的时候玩A2，我的天这也太可爱了吧。还给帕斯卡村里的小孩修滑梯。（awsl）<br><img src="/image/NieR/NieR_Automata_20190518202056_1.jpg" alt><br><img src="/image/NieR/NieR_Automata_20190518202106.jpg" alt><br><img src="/image/NieR/NieR_Automata_20190907125222.jpg" alt><br><img src="/image/NieR/NieR_Automata_20190907125336.jpg" alt><br>还有为了帕斯卡的孩子，只身面对机械大军，太帅了！<br><img src="/image/NieR/NieR_Automata_20190518210600_1.jpg" alt><br><img src="/image/NieR/NieR_Automata_20190518210718_1.jpg" alt><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;还有之后的给帕斯卡消除记忆的那块，我犹豫了一下选的是给消除了。我觉得不帮她删除的话她会受不了这个现实的。然后我今天写这个的时候在知乎上@Adam Wang选了没选删除的结局的回答。果然是一万个人就有一万个哈姆雷特。在每个重要的选择上都给玩家选择的空间。是非常棒的决定！<br><img src="/image/QQ%E6%88%AA%E5%9B%BE20190908223936.png" alt><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在二周目打完之后。又进入了断档期。因为我之前也多多少少有听过一些剧透。所以我一有点直抵制玩第三周目（有我自己来说可能有点不合适，实际上我是一个善感的人，每次自己追的动漫最后是个BadEnd都会难受几天），就这样一放就又是半年。然后就到了前天也就是周五晚上（2019.9.6）总这么放着心里总惦记着，正好赶上周五没有加班，就又把她玩了起来。果然打完之后有点难受尤其是在选择9S还是A2这段剧情的时候，当时心里莫名的难受。<br><img src="/image/NieR/NieR_Automata_20190907141818.jpg" alt><br><img src="/image/NieR/NieR_Automata_20190907142744.jpg" alt><br><img src="/image/NieR/NieR_Automata_20190907142840.jpg" alt><br><img src="/image/NieR/NieR_Automata_20190907144913.jpg" alt><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9S也是个可怜的人。刚和2B有点熟悉，两个就自爆了，2B就没了记忆不认识他了。然后又在两个人约定好以后没有纷争之后两个人一起逛商场没多久2B就感染了病毒，求A2把他杀了。这放哪个男人身上受得了，所以他在三周目最后那么疯狂也不是不能理解。<br><img src="/image/NieR_Automata_20190907125205.jpg" alt><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;其实在我叙述之外还有好多有趣or悲伤的剧情。整体上一周目玩完是最轻松愉快的，二周目就开始一点点虐，三周目我玩的时候简直不行了，心情一直很沉闷。也许这就是一款好的游戏的魅力所在吧。</p>
 <h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;史克威尔艾尼克斯与白金工作室联合开发的这款《NieR:Automata》.在剧情和和音乐上做的无可挑剔。每个人物、每个NPC、每个BOSS以至于每个武器都有自己的背景故事。再加上巧夺天工合时宜的音乐，简直让人无法拒绝。反正是让我沉浸到了这个游戏的世界里面了。能让我心甘情愿的去做支线、赚金币、去发掘他们背后的故事。而不是一到剧情就略过。一周目开始说的那样：“一切事物都是为了毁灭而设计的，我们被困在重复生与死的螺旋中，这是诅咒？还是惩罚？”一开始对这句话还没什么感触，但每经过一周目就对这句话体会深刻一点。还好最后有一个有个结局能反抗一下这句话，把他们的记忆都保存了下来（最后打制作组的弹幕的时候确实挺难，多亏了网友的记录。所以我最后也把我的记录贡献了出去，希望能帮助到别人）。今天我在写这篇文章（也算个文章吧，看书还有读后感呢？是吧）的时候翻了一些资料说，当时给尼尔的开发经费并不多，最后却做出了真么好的一款游戏，工作人员是在是太棒了。最后我我觉得我这150多没有白花，一个人吃烧烤或许能吃饱之后呢出了饱腹感之外能带给你什么呢？然而好的游戏就像一个艺术品。能在你的记忆里停留很久。以后回想起可能还会惆怅一下。反之你肯定不会记得你烧烤吃了多少串羊腰子。好了就说这么多吧时间不早了快12点了。简单写了写，我没有和人面对面交流情感的习惯，所以就写了点东西来记录一下吧。在历史的长河中留下一点点痕迹。谢谢看完，一期一会再见。<br><img src="/image/NieR/NieR_Automata_20190907151132.jpg" alt><br><img src="/image/NieR/NieR_Automata_20190907151152.jpg" alt><br><img src="/image/NieR/NieR_Automata_20190907151717.jpg" alt></p>
-</article><!-- lincense--><div class="post-paginator"><a class="prevSlogan" href="/2019/09/09/算法简介/" title="从头到尾的算法"><span>< PreviousPost</span><br><span class="prevTitle">从头到尾的算法</span></a><a class="nextSlogan" href="/2019/09/04/JS高程之执行环境与作用域/" title="JS高程之执行环境与作用域"><span>NextPost ></span><br><span class="nextTitle">JS高程之执行环境与作用域</span></a><div class="clear"></div></div><div id="comment"><div id="container"></div><link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css"><script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script><script>var gitment = new Gitment({
-  id: 'NieR_Automata',
-  owner: 'X_NNNNN',
-  repo: 'blogOfX_NNNNN.github.io',
-  oauth: {
-    client_id: 'a61c2a7fac0543d1cc52',
-    client_secret: 'af6b1d3e0d8289a66e9c6d60b93214b3fa8fd663',
-  },
-})
-gitment.render('container')</script></div></section></article><footer id="cxo-footer-outer"><div id="cxo-footer-inner"><p class="footer-container"><span>Site by </span><a href="http://hexo.io"><span>Hexo</span></a><span> | theme </span><a href="https://github.com/Longlongyu/hexo-theme-Cxo"><span>Cxo</span></a></p><i class="fa fa-user"> </i><span id="busuanzi_value_site_uv"></span><span> | </span><i class="fa fa-eye"> </i><span id="busuanzi_value_site_pv"></span><script>var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?" + 'ab2813deffd5aaf5cab295d48b65151e';
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();</script></div></footer><!-- catelog--><div class="toc-wrapper" style="top: 70vh;"><div class="toc-catalog"><i class="fa fa-list"> </i><span>CATALOG</span></div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#初识NieR"><span class="toc-number">1.</span> <span class="toc-text">初识NieR</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NieR"><span class="toc-number">2.</span> <span class="toc-text">NieR</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结尾"><span class="toc-number">3.</span> <span class="toc-text">结尾</span></a></li></ol></div><!-- top--><i class="fa fa-arrow-up close" id="go-up" aria-hidden="true"></i><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":70,"vOffset":30},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
+
+      </div>
+        <div class="support-author">
+          <p>感谢您的阅读。 🙏
+          <a href="https://888.com/index.html" target="_blank">关于转载请看这里</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+        </div>
+        <!--
+            <div class="like ">
+              <div class="like-button">
+                <a id="like-note" href="">
+                  <i class="icon-heart"></i>喜欢
+                </a>
+              </div>
+              <span id="likes-count">256</span>
+            </div>
+        -->
+        <div class="otherLink">
+          <div class="previous">
+          </div>
+          <div class="next">
+          </div>
+        </div>
+        <div class="comments" id="comments">
+          
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+  const gitalk = new Gitalk({
+    clientID: '8888a8888',
+    clientSecret: '8888886666666',
+    repo: 'xxxx.github.io',
+    owner: 'admin',
+    admin: ['admin'],
+    id: location.pathname,      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false
+  })
+
+  gitalk.render('comments');
+</script>
+
+
+        </div>
+      </div>
+    </div>
+   
+</main>
+<div class="footer">
+  <div class="info">
+    <p>
+    <a href="https://hexo.io"> Hexo </a> 强力驱动 |
+      <a href="https://github.com/Youthink/hexo-themes-yearn"> Yearn </a>
+      主题
+    </p>
+    <p>&copy; </p>
+  </div>
+</div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true, 
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+<script>//console
+  var consoleConfig = '\n欢迎访问 (づ｡◕‿‿◕｡)づ！\n'.split(',');
+  var canConsole = true;
+  var consoleInfo = (function(consoleConfig) {
+  if (!canConsole || !consoleConfig || consoleConfig.length < 1) {
+    return;
+  }
+  var consoleColor = '#6190e8';
+  var _console;
+  var backgroundTextStyle = 'padding: 1px 5px;color: #fff;background: ' + consoleColor + ';'
+  var textStyle = 'color: ' + consoleColor + ';';
+
+  consoleConfig.map(o => {
+    var num = (o.match(/%c/g) || []).length;
+    if(/^http(s)?:\/\//.test(o)) {
+      console.log('%c     ', 'background: url(' + o + ') no-repeat left center;font-size: 180px;');
+      return;
+    }
+    if (num > 0) {
+      var logArguments = [];
+      for (var i = 0; i < num; i++) {
+        if (i % 2 === 0) {
+          logArguments.push(backgroundTextStyle);
+        } else {
+          logArguments.push(textStyle);
+        }
+      }
+      (_console = console).log.apply(_console, ['%c' + o, textStyle].concat(logArguments));
+      return;
+    }
+    console.log('%c' + o, textStyle);
+  });
+}(consoleConfig));</script><script type="text/javascript" src="/./js/main.js"></script>
+
+  <script src="//at.alicdn.com/t/font_159214_mvtxvg9me9.js"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":70,"vOffset":30},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

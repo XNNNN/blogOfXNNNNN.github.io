@@ -1,103 +1,66 @@
-<!DOCTYPE html><html lang="en"><head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><meta name="author" content="John Doe"><meta name="renderer" content="webkit"><meta name="copyright" content="John Doe"><meta name="keywords" content="Hexo"><meta name="description" content="null"><meta name="Cache-Control" content="no-cache"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>JS之正则表达式 · X丶NNNNN</title><link rel="stylesheet" href="/css/style.css?v=2018.7.9"><link rel="stylesheet" href="/css/animation.css?v=2018.7.9"><link rel="icon" href="/img/assets/favicon.ico"><link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css?version=1.5.6"><!-- scripts--><script>(function( w ){
-  "use strict";
-  // rel=preload support test
-  if( !w.loadCSS ){
-    w.loadCSS = function(){};
-  }
-  // define on the loadCSS obj
-  var rp = loadCSS.relpreload = {};
-  // rel=preload feature support test
-  // runs once and returns a function for compat purposes
-  rp.support = (function(){
-    var ret;
-    try {
-      ret = w.document.createElement( "link" ).relList.supports( "preload" );
-    } catch (e) {
-      ret = false;
-    }
-    return function(){
-      return ret;
-    };
-  })();
-
-  // if preload isn't supported, get an asynchronous load by using a non-matching media attribute
-  // then change that media back to its intended value on load
-  rp.bindMediaToggle = function( link ){
-    // remember existing media attr for ultimate state, or default to 'all'
-    var finalMedia = link.media || "all";
-
-    function enableStylesheet(){
-      link.media = finalMedia;
-    }
-
-    // bind load handlers to enable media
-    if( link.addEventListener ){
-      link.addEventListener( "load", enableStylesheet );
-    } else if( link.attachEvent ){
-      link.attachEvent( "onload", enableStylesheet );
-    }
-
-    // Set rel and non-applicable media type to start an async request
-    // note: timeout allows this to happen async to let rendering continue in IE
-    setTimeout(function(){
-      link.rel = "stylesheet";
-      link.media = "only x";
-    });
-    // also enable media after 3 seconds,
-    // which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
-    setTimeout( enableStylesheet, 3000 );
-  };
-
-  // loop through link elements in DOM
-  rp.poly = function(){
-    // double check this to prevent external calls from running
-    if( rp.support() ){
-      return;
-    }
-    var links = w.document.getElementsByTagName( "link" );
-    for( var i = 0; i < links.length; i++ ){
-      var link = links[ i ];
-      // qualify links to those with rel=preload and as=style attrs
-      if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
-        // prevent rerunning on link
-        link.setAttribute( "data-loadcss", true );
-        // bind listeners to toggle media back
-        rp.bindMediaToggle( link );
-      }
-    }
-  };
-
-  // if unsupported, run the polyfill
-  if( !rp.support() ){
-    // run once at least
-    rp.poly();
-
-    // rerun poly on an interval until onload
-    var run = w.setInterval( rp.poly, 500 );
-    if( w.addEventListener ){
-      w.addEventListener( "load", function(){
-        rp.poly();
-        w.clearInterval( run );
-      } );
-    } else if( w.attachEvent ){
-      w.attachEvent( "onload", function(){
-        rp.poly();
-        w.clearInterval( run );
-      } );
-    }
-  }
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="keywords" content="xnnnnn">
+  <meta name="description" content="X_NNNNN的博客">
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="https://busuanzi.ibruce.info">
+  <link rel="dns-prefetch" href="https://at.alicdn.com">
+  
+  
+  
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+  <link rel="dns-prefetch" href="https://api.github.com">
+  <link rel="dns-prefetch" href="https://avatars3.githubusercontent.com">
+  
+  <link rel="stylesheet" type="text/css" href="/./style/main.css">
+	<link rel="shortcut icon" href="/favicon.ico" title="Favicon">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+	<title>JS之正则表达式</title>
+  
+  
+</head>
+<body>
+  <canvas id="pattern-placeholder" height="230"></canvas>
+<div class="navbar-header">
+  <a class="blog-title" href="/">X_NNNNN</a>
+  <a class="face-img" href="/">
+    <img src="https://tva3.sinaimg.cn/crop.0.0.200.200.180/005Kc3C1jw8f2uep0hhkvj305k05k3yk.jpg">
+  </a>
+</div>
+<main>
+  <div class="article-title">
+    
+  
+  <h1 class="title">
+    JS之正则表达式
+  </h1>
+  
 
 
-  // commonjs
-  if( typeof exports !== "undefined" ){
-    exports.loadCSS = loadCSS;
-  }
-  else {
-    w.loadCSS = loadCSS;
-  }
-}( typeof global !== "undefined" ? global : this ) );</script><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" defer></script><script src="/js/main.js?v=2018.7.9" defer></script><!-- fancybox--><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script><!-- busuanzi--><script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script></head><body><section class="profile-close" id="cxo-profile"><div class="profile-avatar"><i class="fa fa-caret-left"></i><img src="/img/assets/未标题-1.png"></div><!--.profile-saying
-  i.fa.fa-comment
-  .saying--><div class="cxo-profile-inner"><div class="profile-name">X丶NNNNN</div><div class="read-progress"></div></div></section><header id="cxo-intro" style="height: 70vh;background-image: url(/img/intro/63513874_p0.jpg);"><nav id="cxo-intro-nav"><section><div class="intro-nav-title"><a href="/">Welcome to my Blog!</a></div><div class="intro-nav-label-box"><a href="/">Home</a><a href="/about/">About</a><a href="/archives/">Archives</a><a href="/tags/">Tags</a></div><i class="fa fa-bars intro-nav-menu"><div class="intro-nav-drop"><a href="/">Home</a><a href="/about/">About</a><a href="/archives/">Archives</a><a href="/tags/">Tags</a></div></i><div class="clear"></div></section></nav><h1 class="post-title">JS之正则表达式</h1><div class="post-intros"><div class="post-intro-meta"><span class="post-intro-time"><i class="post-intro-calendar fa fa-calendar"></i><span>2019-08-29</span></span></div></div></header><article class="cxo-up" id="cxo-content-outer"><section id="cxo-content-inner"><article class="article-entry" id="post"><p>接着开新坑，之前正则基本上是不会，想用啥直接google但毕竟不是个长久之计。所以第二篇我决定搞正则。、<br>参考资料有：<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions" target="_blank" rel="noopener">MDN正则表达式部分</a>、<a href="http://es6.ruanyifeng.com/#docs/regex" target="_blank" rel="noopener">阮一峰的 ECMAScript 6 入门</a>、JavaScript高级程序设计 —— RegExp类型</p>
+    <ul class="article-info">
+      <li>
+        发布
+        <time datetime="2019-08-29T13:04:44.000Z" itemprop="datePublished">2019-08-29</time>
+      </li>
+      <li>
+        
+    更新 <time datetime="2019-09-02T13:13:35.365Z" itemprop="dateUpdated">2019-09-02</time>
+
+      </li>
+      <li id="busuanzi_container_page_pv">
+        阅读 <span id="busuanzi_value_page_pv"></span>
+      </li>
+    </ul>
+  </div>
+  <div class="container">
+    <div class="article">
+      <div class="content">
+        
+        <p>接着开新坑，之前正则基本上是不会，想用啥直接google但毕竟不是个长久之计。所以第二篇我决定搞正则。、<br>参考资料有：<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions" target="_blank" rel="noopener">MDN正则表达式部分</a>、<a href="http://es6.ruanyifeng.com/#docs/regex" target="_blank" rel="noopener">阮一峰的 ECMAScript 6 入门</a>、JavaScript高级程序设计 —— RegExp类型</p>
 <h2 id="创建正则表达式"><a href="#创建正则表达式" class="headerlink" title="创建正则表达式"></a>创建正则表达式</h2><h3 id="正则表达式字面量"><a href="#正则表达式字面量" class="headerlink" title="正则表达式字面量"></a>正则表达式字面量</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> re = <span class="regexp">/ab+c/</span></span><br></pre></td></tr></table></figure>
 
 <p>使用正则表达式字面量方法为正则表达式提供了脚本加载后的编译。当正则表达式保持不变时，使用此方法可获得更好的性能。</p>
@@ -182,19 +145,137 @@
 <h3 id="y"><a href="#y" class="headerlink" title="y"></a>y</h3><p>执行”粘性”搜索，匹配从目标字符串的当前位置开始，可以使用y标志。与 g 的不同 g修饰符只要剩余位置中存在匹配就可以，而 y 修饰符确保匹配必须从剩余的第一个位置开始，这也就是“粘连”的含义。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> s =<span class="string">'aaa_aa_a'</span></span><br><span class="line"><span class="keyword">let</span> reg1 = <span class="regexp">/a+/g</span></span><br><span class="line"><span class="keyword">let</span> reg2 = <span class="regexp">/a+/y</span></span><br><span class="line">reg1.exec(s) <span class="comment">// 'aaa'</span></span><br><span class="line">reg2.exec(s) <span class="comment">// 'aaa'</span></span><br><span class="line">reg.exec(s) <span class="comment">// aa</span></span><br><span class="line">reg.exec(s) <span class="comment">// null 因为剩余的第一位是 _ 所以不匹配。</span></span><br></pre></td></tr></table></figure>
 
-</article><!-- lincense--><div class="post-paginator"><a class="prevSlogan" href="/2019/09/02/JS高程之基本类型和引用类型/" title="JS高程之基本类型和引用类型"><span>< PreviousPost</span><br><span class="prevTitle">JS高程之基本类型和引用类型</span></a><a class="nextSlogan" href="/2019/08/21/JS高程之数组篇/" title="JS高程之数组篇"><span>NextPost ></span><br><span class="nextTitle">JS高程之数组篇</span></a><div class="clear"></div></div><div id="comment"><div id="container"></div><link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css"><script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script><script>var gitment = new Gitment({
-  id: 'JS之正则表达式',
-  owner: 'X_NNNNN',
-  repo: 'blogOfX_NNNNN.github.io',
-  oauth: {
-    client_id: 'a61c2a7fac0543d1cc52',
-    client_secret: 'af6b1d3e0d8289a66e9c6d60b93214b3fa8fd663',
-  },
-})
-gitment.render('container')</script></div></section></article><footer id="cxo-footer-outer"><div id="cxo-footer-inner"><p class="footer-container"><span>Site by </span><a href="http://hexo.io"><span>Hexo</span></a><span> | theme </span><a href="https://github.com/Longlongyu/hexo-theme-Cxo"><span>Cxo</span></a></p><i class="fa fa-user"> </i><span id="busuanzi_value_site_uv"></span><span> | </span><i class="fa fa-eye"> </i><span id="busuanzi_value_site_pv"></span><script>var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?" + 'ab2813deffd5aaf5cab295d48b65151e';
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();</script></div></footer><!-- catelog--><div class="toc-wrapper" style="top: 70vh;"><div class="toc-catalog"><i class="fa fa-list"> </i><span>CATALOG</span></div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#创建正则表达式"><span class="toc-number">1.</span> <span class="toc-text">创建正则表达式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#正则表达式字面量"><span class="toc-number">1.1.</span> <span class="toc-text">正则表达式字面量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RegExp-对象的构造函数"><span class="toc-number">1.2.</span> <span class="toc-text">RegExp 对象的构造函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用正则表达式"><span class="toc-number">2.</span> <span class="toc-text">使用正则表达式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用简单模式"><span class="toc-number">2.1.</span> <span class="toc-text">使用简单模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用特殊字符串"><span class="toc-number">2.2.</span> <span class="toc-text">使用特殊字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#断言"><span class="toc-number">2.2.1.</span> <span class="toc-text">断言</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#便边界"><span class="toc-number">2.2.2.</span> <span class="toc-text">便边界</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#字符串类别"><span class="toc-number">2.2.3.</span> <span class="toc-text">字符串类别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#组和范围"><span class="toc-number">2.2.4.</span> <span class="toc-text">组和范围</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#量词"><span class="toc-number">2.2.5.</span> <span class="toc-text">量词</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Unicode属性转义"><span class="toc-number">2.2.6.</span> <span class="toc-text">Unicode属性转义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">2.2.7.</span> <span class="toc-text">\</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#-1"><span class="toc-number">2.2.8.</span> <span class="toc-text">^</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#-2"><span class="toc-number">2.2.9.</span> <span class="toc-text">$</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#-3"><span class="toc-number">2.2.10.</span> <span class="toc-text">*</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#-4"><span class="toc-number">2.2.11.</span> <span class="toc-text">+</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#-5"><span class="toc-number">2.2.12.</span> <span class="toc-text">?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#小数点"><span class="toc-number">2.2.13.</span> <span class="toc-text">. (小数点)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#x"><span class="toc-number">2.2.14.</span> <span class="toc-text">(?:x)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#x-y"><span class="toc-number">2.2.15.</span> <span class="toc-text">x(?=y)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#lt-y-x"><span class="toc-number">2.2.16.</span> <span class="toc-text">(?&lt;=y)x</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#x-y-1"><span class="toc-number">2.2.17.</span> <span class="toc-text">x(?!y)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#lt-y-x-1"><span class="toc-number">2.2.18.</span> <span class="toc-text">(?&lt;!y)x</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#x-y-2"><span class="toc-number">2.2.19.</span> <span class="toc-text">x|y</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#n"><span class="toc-number">2.2.20.</span> <span class="toc-text">{n}</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#n-1"><span class="toc-number">2.2.21.</span> <span class="toc-text">{n,}</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#n-m"><span class="toc-number">2.2.22.</span> <span class="toc-text">{n,m}</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#xyz"><span class="toc-number">2.2.23.</span> <span class="toc-text">[xyz]</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#xyz-1"><span class="toc-number">2.2.24.</span> <span class="toc-text">[^xyz]</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#b"><span class="toc-number">2.2.25.</span> <span class="toc-text">[\b]</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#b-1"><span class="toc-number">2.2.26.</span> <span class="toc-text">\b</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#B"><span class="toc-number">2.2.27.</span> <span class="toc-text">\B</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cX"><span class="toc-number">2.2.28.</span> <span class="toc-text">/cX</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#d"><span class="toc-number">2.2.29.</span> <span class="toc-text">\d</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#D"><span class="toc-number">2.2.30.</span> <span class="toc-text">\D</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#f"><span class="toc-number">2.2.31.</span> <span class="toc-text">\f</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#n-2"><span class="toc-number">2.2.32.</span> <span class="toc-text">\n</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#r"><span class="toc-number">2.2.33.</span> <span class="toc-text">\r</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#s"><span class="toc-number">2.2.34.</span> <span class="toc-text">\s</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#S"><span class="toc-number">2.2.35.</span> <span class="toc-text">\S</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#w"><span class="toc-number">2.2.36.</span> <span class="toc-text">\w</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#W"><span class="toc-number">2.2.37.</span> <span class="toc-text">\W</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#n-3"><span class="toc-number">2.2.38.</span> <span class="toc-text">\n</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用正则表达式-1"><span class="toc-number">3.</span> <span class="toc-text">使用正则表达式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#exec"><span class="toc-number">3.1.</span> <span class="toc-text">exec</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#test"><span class="toc-number">3.2.</span> <span class="toc-text">test</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#match"><span class="toc-number">3.3.</span> <span class="toc-text">match</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#matchAll"><span class="toc-number">3.4.</span> <span class="toc-text">matchAll</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#search"><span class="toc-number">3.5.</span> <span class="toc-text">search</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#replace"><span class="toc-number">3.6.</span> <span class="toc-text">replace</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#split"><span class="toc-number">3.7.</span> <span class="toc-text">split</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#正则表达式标志"><span class="toc-number">4.</span> <span class="toc-text">正则表达式标志</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#g"><span class="toc-number">4.1.</span> <span class="toc-text">g</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#i"><span class="toc-number">4.2.</span> <span class="toc-text">i</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#m"><span class="toc-number">4.3.</span> <span class="toc-text">m</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#s-1"><span class="toc-number">4.4.</span> <span class="toc-text">s</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u"><span class="toc-number">4.5.</span> <span class="toc-text">u</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#y"><span class="toc-number">4.6.</span> <span class="toc-text">y</span></a></li></ol></li></ol></div><!-- top--><i class="fa fa-arrow-up close" id="go-up" aria-hidden="true"></i><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":70,"vOffset":30},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
+
+      </div>
+        <div class="support-author">
+          <p>感谢您的阅读。 🙏
+          <a href="https://888.com/index.html" target="_blank">关于转载请看这里</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+        </div>
+        <!--
+            <div class="like ">
+              <div class="like-button">
+                <a id="like-note" href="">
+                  <i class="icon-heart"></i>喜欢
+                </a>
+              </div>
+              <span id="likes-count">256</span>
+            </div>
+        -->
+        <div class="otherLink">
+          <div class="previous">
+          </div>
+          <div class="next">
+          </div>
+        </div>
+        <div class="comments" id="comments">
+          
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+  const gitalk = new Gitalk({
+    clientID: '8888a8888',
+    clientSecret: '8888886666666',
+    repo: 'xxxx.github.io',
+    owner: 'admin',
+    admin: ['admin'],
+    id: location.pathname,      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false
+  })
+
+  gitalk.render('comments');
+</script>
+
+
+        </div>
+      </div>
+    </div>
+   
+</main>
+<div class="footer">
+  <div class="info">
+    <p>
+    <a href="https://hexo.io"> Hexo </a> 强力驱动 |
+      <a href="https://github.com/Youthink/hexo-themes-yearn"> Yearn </a>
+      主题
+    </p>
+    <p>&copy; </p>
+  </div>
+</div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true, 
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+<script>//console
+  var consoleConfig = '\n欢迎访问 (づ｡◕‿‿◕｡)づ！\n'.split(',');
+  var canConsole = true;
+  var consoleInfo = (function(consoleConfig) {
+  if (!canConsole || !consoleConfig || consoleConfig.length < 1) {
+    return;
+  }
+  var consoleColor = '#6190e8';
+  var _console;
+  var backgroundTextStyle = 'padding: 1px 5px;color: #fff;background: ' + consoleColor + ';'
+  var textStyle = 'color: ' + consoleColor + ';';
+
+  consoleConfig.map(o => {
+    var num = (o.match(/%c/g) || []).length;
+    if(/^http(s)?:\/\//.test(o)) {
+      console.log('%c     ', 'background: url(' + o + ') no-repeat left center;font-size: 180px;');
+      return;
+    }
+    if (num > 0) {
+      var logArguments = [];
+      for (var i = 0; i < num; i++) {
+        if (i % 2 === 0) {
+          logArguments.push(backgroundTextStyle);
+        } else {
+          logArguments.push(textStyle);
+        }
+      }
+      (_console = console).log.apply(_console, ['%c' + o, textStyle].concat(logArguments));
+      return;
+    }
+    console.log('%c' + o, textStyle);
+  });
+}(consoleConfig));</script><script type="text/javascript" src="/./js/main.js"></script>
+
+  <script src="//at.alicdn.com/t/font_159214_mvtxvg9me9.js"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":70,"vOffset":30},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
