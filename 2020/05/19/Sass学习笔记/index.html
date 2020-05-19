@@ -48,7 +48,7 @@
       </li>
       <li>
         
-    更新 <time datetime="2020-05-18T16:43:10.602Z" itemprop="dateUpdated">2020-05-19</time>
+    更新 <time datetime="2020-05-19T16:21:15.461Z" itemprop="dateUpdated">2020-05-20</time>
 
       </li>
       <li id="busuanzi_container_page_pv">
@@ -95,6 +95,18 @@
 <p>我们也可以在导入时添加 as xxxx 来改变或者删除命名空间</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@use &apos;button&apos; as * //星号会删除所有命名空间</span><br><span class="line">@use &apos;forms&apos; as &apos;f&apos; // 用了f之后我们就不用在写 &apos;forms&apos;了，直接写 f.$size就可以。</span><br></pre></td></tr></table></figure>
 
+<h4 id="extend"><a href="#extend" class="headerlink" title="@extend"></a>@extend</h4><p>使用@extend可以将一个选择器下的所有样式继承给另一个选择器。like this。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">.error &#123;</span><br><span class="line">    backgroud-color: #fff</span><br><span class="line">&#125;</span><br><span class="line">.otherError &#123;</span><br><span class="line">    @extend .error</span><br><span class="line">    border-width: 3px</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>一些概念：</p>
+<ol>
+<li>延伸复杂的选择器。例如：a:hover</li>
+<li>多重延伸。 同一个选择器可以延伸多个选择器，他的属性将积诚阁所有被延伸的选择器。</li>
+<li>继续延伸。 爷爷传爸爸，爸爸传儿子。儿子也能用。</li>
+<li>有待补充，其他不常用。<h4 id="控制指令"><a href="#控制指令" class="headerlink" title="控制指令"></a>控制指令</h4><h5 id="if"><a href="#if" class="headerlink" title="if"></a>if</h5>能做判断.<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">p&#123;</span><br><span class="line">    color:if(1+1=2, red, green)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
 
       </div>
         <div class="support-author">
