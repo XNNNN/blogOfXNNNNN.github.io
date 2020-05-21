@@ -48,7 +48,7 @@
       </li>
       <li>
         
-    更新 <time datetime="2020-05-20T16:33:20.673Z" itemprop="dateUpdated">2020-05-21</time>
+    更新 <time datetime="2020-05-21T16:47:05.969Z" itemprop="dateUpdated">2020-05-22</time>
 
       </li>
       <li id="busuanzi_container_page_pv">
@@ -79,6 +79,12 @@
 <li>nodejs中间件代理跨域</li>
 <li>WebSocket协议跨域</li>
 </ol>
+<h4 id="跨域资源共享-CORS"><a href="#跨域资源共享-CORS" class="headerlink" title="跨域资源共享 CORS"></a>跨域资源共享 CORS</h4><p>普通跨域请求：只服务端设置Access-Control-Allow-Origin即可，前端无需配置。在之前的项目的开发环境就用的这种模式。但是 若需要带cookie请求则需要前后端都设置。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 原生ajax</span><br><span class="line">xhr.withCredentials = true</span><br><span class="line">// VUE </span><br><span class="line">// axios设置</span><br><span class="line">axios.defaults.withCredentials = true</span><br><span class="line">// vue-resource</span><br><span class="line">Vue.http.optins.credentials = true</span><br></pre></td></tr></table></figure>
+
+<p>若后台配置成功，前端跨域访问时是不会提示跨域报错的。</p>
+<h4 id="nginx代理跨域"><a href="#nginx代理跨域" class="headerlink" title="nginx代理跨域"></a>nginx代理跨域</h4><p>待补充</p>
+<h4 id="NodeJS中间件代理跨域"><a href="#NodeJS中间件代理跨域" class="headerlink" title="NodeJS中间件代理跨域"></a>NodeJS中间件代理跨域</h4><p>待补充</p>
 <h4 id="jsonp"><a href="#jsonp" class="headerlink" title="jsonp"></a>jsonp</h4><p>我们把js、css，img等静态资源分离到另一台独立域名的服务器上，在html页面中再通过相应的标签从不同域名下加载静态资源，而被浏览器允许，基于此原理，我们可以通过动态创建script，再请求一个带参网址实现跨域通信。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//原生实现</span></span><br><span class="line">    <span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);</span><br><span class="line">    script.type = <span class="string">'text/javascript'</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 传参一个回调函数名给后端，方便后端返回时执行这个在前端定义的回调函数</span></span><br><span class="line">    script.src = <span class="string">'http://www.domain2.com:8080/login?user=admin&amp;callback=handleCallback'</span>;</span><br><span class="line">    <span class="built_in">document</span>.head.appendChild(script);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 回调执行函数</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">handleCallback</span>(<span class="params">res</span>) </span>&#123;</span><br><span class="line">        alert(<span class="built_in">JSON</span>.stringify(res));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//vue实现</span></span><br><span class="line"><span class="keyword">this</span>.$http.jsonp(<span class="string">'http://www.domain2.com:8080/login'</span>, &#123;</span><br><span class="line">    params: &#123;&#125;,</span><br><span class="line">    jsonp: <span class="string">'handleCallback'</span></span><br><span class="line">&#125;).then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(res); </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
