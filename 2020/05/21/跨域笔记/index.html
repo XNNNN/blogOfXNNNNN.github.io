@@ -48,7 +48,7 @@
       </li>
       <li>
         
-    更新 <time datetime="2020-05-22T09:46:46.233Z" itemprop="dateUpdated">2020-05-22</time>
+    更新 <time datetime="2020-05-22T09:56:44.748Z" itemprop="dateUpdated">2020-05-22</time>
 
       </li>
       <li id="busuanzi_container_page_pv">
@@ -88,7 +88,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">location / &#123;</span><br><span class="line">    add_header Access-Control-Allow-Origin</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>nginx 反向代理接口跨域<br>跨域原理：同源策略是浏览器的安全策略，不是HTTP协议的一部分。服务器调用端调用HTTP接口只使用了HTTP协议，不会执行JS脚本，不存在同源策略也就不存在跨域问题。<br>实现思路：通过nginx配置一个代理服务器做跳板机。域名与domain1相同，端口不同。反向代理访问domain2接口，并且可以顺便修改cookie中domain信息，方便当前域cookie写入，实现跨域登录。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 81;</span><br><span class="line">    server_name www.domain1.com;</span><br><span class="line">    location / &#123;</span><br><span class="line">        proxy_pass http://www.doamin2.com:8080; #反向代理</span><br><span class="line">        proxy_cookie_domain www.domain2 www.domain1.com;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 81;</span><br><span class="line">    server_name www.domain1.com;</span><br><span class="line">    location / &#123;</span><br><span class="line">        proxy_pass http://www.doamin2.com:8080; #反向代理</span><br><span class="line">        proxy_cookie_domain www.domain2 www.domain1.com;</span><br><span class="line">        index index.html index.html //???</span><br><span class="line">        // 当用webpack-dev-server等中间件代理接口访问nginx，此时无浏览器参与，所以下面的配置可以不启用。</span><br><span class="line">        add_header Access-Control-Allow-Origin http://www.domain1.com</span><br><span class="line">        add_header Access-Control-Allow-Credentials true</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 </li>
 </ol>
