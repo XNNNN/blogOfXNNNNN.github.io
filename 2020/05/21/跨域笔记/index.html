@@ -48,7 +48,7 @@
       </li>
       <li>
         
-    更新 <time datetime="2020-05-22T09:56:44.748Z" itemprop="dateUpdated">2020-05-22</time>
+    更新 <time datetime="2020-05-22T15:23:06.092Z" itemprop="dateUpdated">2020-05-22</time>
 
       </li>
       <li id="busuanzi_container_page_pv">
@@ -92,7 +92,10 @@
 
 </li>
 </ol>
-<h4 id="NodeJS中间件代理跨域"><a href="#NodeJS中间件代理跨域" class="headerlink" title="NodeJS中间件代理跨域"></a>NodeJS中间件代理跨域</h4><p>待补充</p>
+<h4 id="NodeJS中间件代理跨域"><a href="#NodeJS中间件代理跨域" class="headerlink" title="NodeJS中间件代理跨域"></a>NodeJS中间件代理跨域</h4><p>用vue-cli 3.0 搭建的项目，在vue.config.js里配置devServer就行，简单省事。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">    devServer: &#123;</span><br><span class="line">        proxy: &apos;http//开发同学的IP地址.com&apos;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="WebSocket协议跨域"><a href="#WebSocket协议跨域" class="headerlink" title="WebSocket协议跨域"></a>WebSocket协议跨域</h4><p>这个最近还没有用到，用到了再补充。</p>
 <h4 id="jsonp"><a href="#jsonp" class="headerlink" title="jsonp"></a>jsonp</h4><p>我们把js、css，img等静态资源分离到另一台独立域名的服务器上，在html页面中再通过相应的标签从不同域名下加载静态资源，而被浏览器允许，基于此原理，我们可以通过动态创建script，再请求一个带参网址实现跨域通信。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//原生实现</span></span><br><span class="line">    <span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);</span><br><span class="line">    script.type = <span class="string">'text/javascript'</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 传参一个回调函数名给后端，方便后端返回时执行这个在前端定义的回调函数</span></span><br><span class="line">    script.src = <span class="string">'http://www.domain2.com:8080/login?user=admin&amp;callback=handleCallback'</span>;</span><br><span class="line">    <span class="built_in">document</span>.head.appendChild(script);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 回调执行函数</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">handleCallback</span>(<span class="params">res</span>) </span>&#123;</span><br><span class="line">        alert(<span class="built_in">JSON</span>.stringify(res));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//vue实现</span></span><br><span class="line"><span class="keyword">this</span>.$http.jsonp(<span class="string">'http://www.domain2.com:8080/login'</span>, &#123;</span><br><span class="line">    params: &#123;&#125;,</span><br><span class="line">    jsonp: <span class="string">'handleCallback'</span></span><br><span class="line">&#125;).then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(res); </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
