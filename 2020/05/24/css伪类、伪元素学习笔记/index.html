@@ -48,7 +48,7 @@
       </li>
       <li>
         
-    更新 <time datetime="2020-05-25T15:11:11.135Z" itemprop="dateUpdated">2020-05-25</time>
+    更新 <time datetime="2020-05-25T15:30:41.904Z" itemprop="dateUpdated">2020-05-25</time>
 
       </li>
       <li id="busuanzi_container_page_pv">
@@ -73,11 +73,35 @@
 </ul>
 <h1 id="元素优先级"><a href="#元素优先级" class="headerlink" title="元素优先级"></a>元素优先级</h1><p><strong>分开各自作为真正的类和元素计算。</strong></p>
 <h1 id="标准伪类索引-不包括实验中的API"><a href="#标准伪类索引-不包括实验中的API" class="headerlink" title="标准伪类索引(不包括实验中的API)"></a>标准伪类索引(不包括实验中的API)</h1><ul>
-<li>:active:<br>匹配配用户激活的元素。他代表按下到松开之间的时间。一般用于a标签访问过的颜色。</li>
-<li>:last-of-type<br>表示在他父元素的子元素列表中，最后一个元素。</li>
-<li>:left<br>这个需要和@page配套使用，设置打印文档左侧的css样式。没用过不多说</li>
-<li>:link<br>用来选中元素中的链接，她会选中所有尚未访问的链接，包括那些已经被其他伪类选中的(比如： hover、active、visited)。所以link伪类应该放到其他伪类前面。并遵循：<strong>LVHA</strong>、即link-&gt;visited-&gt;hover-&gt;active</li>
-<li>:checked<br>标识任何处于选中状态的radio。</li>
+<li><p>:active:<br>匹配配用户激活的元素。他代表按下到松开之间的时间。一般用于a标签访问过的颜色。</p>
+</li>
+<li><p>:last-of-type<br>表示在他父元素的子元素列表中，最后一个元素。</p>
+</li>
+<li><p>:left<br>这个需要和@page配套使用，设置打印文档左侧的css样式。没用过不多说</p>
+</li>
+<li><p>:link<br>用来选中元素中的链接，她会选中所有尚未访问的链接，包括那些已经被其他伪类选中的(比如： hover、active、visited)。所以link伪类应该放到其他伪类前面。并遵循：<strong>LVHA</strong>、即link-&gt;visited-&gt;hover-&gt;active</p>
+</li>
+<li><p>:checked<br>标识任何处于选中状态的radio。</p>
+</li>
+<li><p>:not<br>用来匹配不符合一组选择器的元素。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 选择所有不是P的元素</span><br><span class="line"><span class="selector-pseudo">:not(p)</span>&#123;</span><br><span class="line">    <span class="attribute">color</span>: red</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>:default<br>表示一组相关元素中的默认表单元素。</p>
+</li>
+<li><p>:nth-child(an+b)<br>这个伪类首先找到所有当前元素的兄弟元素，然后按照位置选后顺序从一开始，选择结果是括号中的表达式。</p>
+<ul>
+<li>0n+3 or 3 都匹配第三个元素</li>
+<li>1n or n 匹配每个元素</li>
+<li>2n 匹配偶数2 4 6 8的元素，可用even代替。</li>
+<li>2n+1 匹配奇数1 3 5 7的元素，可用odd代替。<br>注意：a、b都必须为整数，an必须写在b的前面。</li>
+</ul>
+</li>
+<li><p>:nth-last-child()<br>从兄弟节点中从后往前匹配处于某些位置的元素,这个伪类和 :nth-child 基本一致, 但它是从结尾计数, 而不是从开始计数.</p>
+</li>
+<li><p>:defined<br>表示任何已定义的元素。这包括任何浏览器内置的标准元素以及已成功定义的自定义元素.</p>
+</li>
+<li><p>:disabled<br>表示任何被禁用的元素。如果一个元素不能被激活（如选择、点击或接受文本输入）或获取焦点，则该元素处于被禁用状态。</p>
+</li>
 </ul>
 
       </div>
