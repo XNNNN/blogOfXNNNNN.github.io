@@ -48,7 +48,7 @@
       </li>
       <li>
         
-    更新 <time datetime="2020-05-24T16:04:59.724Z" itemprop="dateUpdated">2020-05-25</time>
+    更新 <time datetime="2020-05-25T15:11:11.135Z" itemprop="dateUpdated">2020-05-25</time>
 
       </li>
       <li id="busuanzi_container_page_pv">
@@ -60,10 +60,26 @@
     <div class="article">
       <div class="content">
         
-        <h1 id="什么是伪类"><a href="#什么是伪类" class="headerlink" title="什么是伪类"></a>什么是伪类</h1><p>是一种CSS的内置类，名字叫伪类(不要纠结为什么叫伪类，就跟人的名字一样)，她被赋予了一些特性和功能：可以不用选择器就能拿来用。<br>官方解释是：伪类对元素的名称、属性、内容以外的特征进行分类。伪类可以是动态的，当用户与元素进行交互时元素可能触发伪类。</p>
-<h1 id="什么是伪元素"><a href="#什么是伪元素" class="headerlink" title="什么是伪元素"></a>什么是伪元素</h1><p>可以想象成一种节点选择器，一种不能直接用css其他写法表示出来的。比如你想用css获取一篇文字的第一个字母，或者第一行，这个时候光用普通的选择器很难实现，这时候就是伪元素显身手的时候了。</p>
+        <h1 id="什么是伪类"><a href="#什么是伪类" class="headerlink" title="什么是伪类"></a>什么是伪类</h1><p>是一种CSS的内置类，名字叫伪类(不要纠结为什么叫伪类，就跟人的名字一样)，她被赋予了一些特性和功能：可以不用选择器就能拿来用。<br>伪类则是像真正的类一样发挥这类的作用，没有数量上的限制，只要不互相排斥也能用到相同的元素上。<br>官方解释是：伪类对元素的名称、属性、内容以外的特征进行分类。伪类可以是动态的，当用户与元素进行交互时元素可能触发伪类。</p>
+<h1 id="什么是伪元素"><a href="#什么是伪元素" class="headerlink" title="什么是伪元素"></a>什么是伪元素</h1><p>可以想象成一种元素，一种不能直接用css其他写法表示出来的。比如你想用css获取一篇文字的第一个字母，或者第一行，这个时候光用普通的选择器很难实现，这时候就是伪元素显身手的时候了。<strong>伪元素是选中某个元素符合逻辑却实际上不存在的部分</strong><br>到目前为止，伪元素在一个选择器里只能出现一次，并且只能出现在末尾</p>
+<h1 id="原文说明"><a href="#原文说明" class="headerlink" title="原文说明"></a>原文说明</h1><ul>
+<li><p>Pseudo-elements create abstractions about the document tree beyond those specified by the document language. For instance, document languages do not offer mechanisms to access the first letter or first line of an element’s content. CSS pseudo-elements allow style sheet designers to refer to this otherwise inaccessible information. Pseudo-elements may also provide style sheet designers a way to assign style to content that does not exist in the source document (e.g., the :before and :after pseudo-elements give access to generated content).</p>
+</li>
+<li><p>Pseudo-classes classify elements on characteristics other than their name, attributes or content; in principle characteristics that cannot be deduced from the document tree. Pseudo-classes may be dynamic, in the sense that an element may acquire or lose a pseudo-class while a user interacts with the document. The exceptions are ‘:first-child’, which can be deduced from the document tree, and ‘:lang()’, which can be deduced from the document tree in some cases</p>
 <h1 id="写法上的区别"><a href="#写法上的区别" class="headerlink" title="写法上的区别"></a>写法上的区别</h1><p>CSS3为了区分这两者。在语法上作出了区别：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span><span class="selector-pseudo">:first-child</span>&#123;</span><br><span class="line">    //一个冒号是伪类</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">div</span><span class="selector-pseudo">::first-line</span>&#123;</span><br><span class="line">    //两个冒号是伪元素</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h1 id="元素优先级"><a href="#元素优先级" class="headerlink" title="元素优先级"></a>元素优先级</h1><p><strong>分开各自作为真正的类和元素计算。</strong></p>
+<h1 id="标准伪类索引-不包括实验中的API"><a href="#标准伪类索引-不包括实验中的API" class="headerlink" title="标准伪类索引(不包括实验中的API)"></a>标准伪类索引(不包括实验中的API)</h1><ul>
+<li>:active:<br>匹配配用户激活的元素。他代表按下到松开之间的时间。一般用于a标签访问过的颜色。</li>
+<li>:last-of-type<br>表示在他父元素的子元素列表中，最后一个元素。</li>
+<li>:left<br>这个需要和@page配套使用，设置打印文档左侧的css样式。没用过不多说</li>
+<li>:link<br>用来选中元素中的链接，她会选中所有尚未访问的链接，包括那些已经被其他伪类选中的(比如： hover、active、visited)。所以link伪类应该放到其他伪类前面。并遵循：<strong>LVHA</strong>、即link-&gt;visited-&gt;hover-&gt;active</li>
+<li>:checked<br>标识任何处于选中状态的radio。</li>
+</ul>
+
       </div>
         <div class="support-author">
           <p>感谢您的阅读。 🙏
