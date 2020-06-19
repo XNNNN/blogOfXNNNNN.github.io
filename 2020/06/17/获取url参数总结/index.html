@@ -48,7 +48,7 @@
       </li>
       <li>
         
-    更新 <time datetime="2020-06-18T15:35:49.227Z" itemprop="dateUpdated">2020-06-18</time>
+    更新 <time datetime="2020-06-19T03:17:30.041Z" itemprop="dateUpdated">2020-06-19</time>
 
       </li>
       <li id="busuanzi_container_page_pv">
@@ -62,7 +62,21 @@
         
         <p>今天在开发项目的时候遇到了需要从url获取参数的问题，之前都是通过vueRouter里的$route.params或者是$router.query来获取。原生的方法不太经常用到，趁着这次机会就总结学习一下。</p>
 <h1 id="url的构成"><a href="#url的构成" class="headerlink" title="url的构成"></a>url的构成</h1><p>基本构成：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scheme:[//[user[:password]@]host[:port]][/path][?query][#fragment]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://www.example.com:80/path/to/myfile.html?key1=value1&amp;key2=value2#SomewhereInTheDocument</span><br></pre></td></tr></table></figure>
+
+<p>http:// 这部分属于<strong>协议(protocol)</strong>，协议分为：</p>
+<ol>
+<li>http协议</li>
+<li>https协议</li>
+<li>mailto: 用户打开邮箱和客户端</li>
+<li>ftp: 文件转换</li>
+<li>file 获取文件</li>
+<li>data 获取外部资源</li>
+</ol>
+<p><a href="http://www.example.com" target="_blank" rel="noopener">www.example.com</a>  <strong>域名(Domain)</strong>,标明了需要请求的服务器的地址。</p>
+<p>:80 <strong>端口号</strong>，标明了获取服务器资源的入口。用于区分服务器的端口，一台服务器可能有多个服务在运行，服务器的资源通过 IP地址+端口号 来区分不同的服务。</p>
+<p>/path/to/myfile.html <strong>文件路径</strong>， 表示服务器上资源的路径。此路径表示的是一个抽象地址，并不指代任何物理地址。</p>
+
       </div>
         <div class="support-author">
           <p>感谢您的阅读。 🙏
