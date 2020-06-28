@@ -48,7 +48,7 @@
       </li>
       <li>
         
-    更新 <time datetime="2020-06-27T03:12:22.512Z" itemprop="dateUpdated">2020-06-27</time>
+    更新 <time datetime="2020-06-28T16:00:02.410Z" itemprop="dateUpdated">2020-06-29</time>
 
       </li>
       <li id="busuanzi_container_page_pv">
@@ -85,6 +85,8 @@
 <h2 id="window-location-pathname"><a href="#window-location-pathname" class="headerlink" title="window.location.pathname"></a>window.location.pathname</h2><p>设置或获取URL的<strong>路径</strong></p>
 <h2 id="window-location-search"><a href="#window-location-search" class="headerlink" title="window.location.search"></a>window.location.search</h2><p>设置或获取URL的<strong>查询参数</strong></p>
 <h2 id="window-location-hash"><a href="#window-location-hash" class="headerlink" title="window.location.hash"></a>window.location.hash</h2><p>设置或获取<strong>片段(fragment)</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getQueryString</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> reg = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">`(^|&amp;)<span class="subst">$&#123;name&#125;</span>=([^&amp;*])(&amp;|$)`</span>,<span class="string">'i'</span>)</span><br><span class="line">    <span class="keyword">let</span> r = <span class="built_in">window</span>.location.search.substr(<span class="number">1</span>).match(reg)</span><br><span class="line">    <span class="keyword">if</span>(r!==<span class="literal">null</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">decodeURI</span>(r[<span class="number">2</span>])</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br><span class="line">alert(getQueryString(<span class="string">"params1"</span>))</span><br></pre></td></tr></table></figure>
+
 
       </div>
         <div class="support-author">
