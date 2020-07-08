@@ -48,7 +48,7 @@
       </li>
       <li>
         
-    更新 <time datetime="2020-07-06T16:06:47.745Z" itemprop="dateUpdated">2020-07-07</time>
+    更新 <time datetime="2020-07-08T15:49:17.537Z" itemprop="dateUpdated">2020-07-08</time>
 
       </li>
       <li id="busuanzi_container_page_pv">
@@ -89,7 +89,12 @@ _ : 单下划线。用来描述一个块或者块的子元素的一种状态。 
 </li>
 <li><p>for…in 和 for…of的区别：<br> for…in是ES5的语法，遍历对象属性的时候，使用。<br> for…of是ES6的语法，遍历数组时候使用。不能循环普通的对象。</p>
 <pre><code>for of 只能遍历可迭代的可迭代属性，不可迭代的属性被忽略了。</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.prototype.objCustom = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line"><span class="built_in">Array</span>.prototype.arrCustom = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line"><span class="keyword">let</span> iterable = [<span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>];</span><br><span class="line">iterable.foo = <span class="string">"hello"</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">in</span> iterable) &#123; </span><br><span class="line">    <span class="built_in">console</span>.log(i); <span class="comment">// logs 0, 1, 2, "foo", "arrCustom", "objCustom"</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">of</span> iterable) &#123; </span><br><span class="line">    <span class="built_in">console</span>.log(i); <span class="comment">// logs 3, 5, 7</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+</li>
+<li><p>URL编码解码：</p>
+<ul>
+<li>encodeURI:除了空格其他字符不做转译，空格转译成%20<br>decodeURI:翻译encodeURI转译后的字符串</li>
+<li>encodeURIComponent:除了字母数字以外的全部转译<br>decodeURIComponent:翻译encodeURIComponent的字符</li>
+</ul>
 </li>
 </ol>
 
