@@ -48,7 +48,7 @@
       </li>
       <li>
         
-    更新 <time datetime="2020-07-14T02:44:41.949Z" itemprop="dateUpdated">2020-07-14</time>
+    更新 <time datetime="2020-07-15T02:19:44.100Z" itemprop="dateUpdated">2020-07-15</time>
 
       </li>
       <li id="busuanzi_container_page_pv">
@@ -109,7 +109,14 @@ _ : 单下划线。用来描述一个块或者块的子元素的一种状态。 
 </li>
 <li><p>vue里的computed(计算属性)里不能调用异步方法</p>
 </li>
-<li><p>箭头函数<br>特性：没new.target属性，不能当构造函数，this指向外部调用者，没有construct属性。</p>
+<li><p>箭头函数<br>特性：没new.target属性，不能当构造函数，this指向外部调用者，没有construct属性，没有argument对象。</p>
+</li>
+<li><p>尾调用优化条件：</p>
+<ul>
+<li>不调用栈帧(stack frame)里的局部变量</li>
+<li>函数调用是否在尾部发生</li>
+<li>最后retrun的是否是函数</li>
+</ul>
 </li>
 </ol>
 
