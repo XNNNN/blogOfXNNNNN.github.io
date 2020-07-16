@@ -48,7 +48,7 @@
       </li>
       <li>
         
-    更新 <time datetime="2020-07-15T02:19:44.100Z" itemprop="dateUpdated">2020-07-15</time>
+    更新 <time datetime="2020-07-16T03:06:06.632Z" itemprop="dateUpdated">2020-07-16</time>
 
       </li>
       <li id="busuanzi_container_page_pv">
@@ -115,8 +115,31 @@ _ : 单下划线。用来描述一个块或者块的子元素的一种状态。 
 <ul>
 <li>不调用栈帧(stack frame)里的局部变量</li>
 <li>函数调用是否在尾部发生</li>
-<li>最后retrun的是否是函数</li>
+<li>最后retrun的是否是函数<br>能优化的点：<br> 递归函数</li>
 </ul>
+</li>
+<li><p>vue 子组件更新父组件的值，emit和sync</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 子组件内,想要修改父组件内自己的显隐</span></span><br><span class="line"><span class="keyword">this</span>.$emit(<span class="string">'update:visible'</span>,<span class="literal">false</span>)</span><br><span class="line"><span class="comment">// 父组件内的子组件生命的属性里 ,最终结果dialogVisible为false</span></span><br><span class="line">:visible.sync = <span class="string">'dialongVisible'</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>响应式原理——对象部分。在methods尝试给data里的一个对象添加新的属性，然后发现watch监听不到变化<br>原因：看了一下文档的’深入响应式原理’关于对象的部分。主要是因为<strong>vue无法监听property的添加或者移除</strong>，vue只会在初始化实例的时候对property执行setting和getting，所以property只有在data上存在才是响应式的。<br>解决办法：</p>
+<ol>
+<li>提前在data的对象中声明这个属性，给个默认值。</li>
+<li>使用Set方法:<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.$<span class="built_in">Set</span>(<span class="keyword">this</span>.object, newKey, value)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>响应式原理补充——数组部分<br>无法检测的操作：</p>
+<ul>
+<li>根据下标直接设置项</li>
+<li>设置数组长度<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//引用官网例子</span></span><br><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">data: &#123;</span><br><span class="line">    items: [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>]</span><br><span class="line">&#125;</span><br><span class="line">&#125;)</span><br><span class="line">vm.items[<span class="number">1</span>] = <span class="string">'x'</span> <span class="comment">// 不是响应性的</span></span><br><span class="line">vm.items.length = <span class="number">2</span> <span class="comment">// 不是响应性的</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>解决办法：</p>
+<ol>
+<li>还是set：<br>this.$Set(this.array, index,newValue)</li>
+<li>splice方法<br>this.array.splice(index, 1,newValue) 修改值<br>this.array.splice(newLength) 修改长度</li>
+</ol>
 </li>
 </ol>
 
