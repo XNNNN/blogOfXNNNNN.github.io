@@ -48,7 +48,7 @@
       </li>
       <li>
         
-    更新 <time datetime="2020-07-18T08:13:47.812Z" itemprop="dateUpdated">2020-07-18</time>
+    更新 <time datetime="2020-07-20T11:16:46.361Z" itemprop="dateUpdated">2020-07-20</time>
 
       </li>
       <li id="busuanzi_container_page_pv">
@@ -82,6 +82,29 @@
 
 <h2 id="Object-assign-target-…source"><a href="#Object-assign-target-…source" class="headerlink" title="Object.assign(target,…source)"></a>Object.assign(target,…source)</h2><pre><code>用途：深拷贝，拷贝可枚举属性给目标对象。
 注意点：属性限定简单类型。同名的属性会被覆盖(调用target的set和source的get)。</code></pre><h2 id="ES6里Object的属性顺序规则"><a href="#ES6里Object的属性顺序规则" class="headerlink" title="ES6里Object的属性顺序规则"></a>ES6里Object的属性顺序规则</h2><pre><code>具体规则: 数字key &gt; 其他key(按照设置的先后顺序排列)</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">	v: <span class="string">'111'</span>,</span><br><span class="line">	a: <span class="string">'222'</span>,</span><br><span class="line">	<span class="number">1</span>: <span class="string">'aaa'</span>,</span><br><span class="line">	b: <span class="string">'233'</span>,</span><br><span class="line">	<span class="number">0</span>: <span class="string">'999'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(obj) <span class="comment">// &#123;0: "999", 1: "aaa", v: "111", a: "222", b: "233"&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="可枚举性和遍历"><a href="#可枚举性和遍历" class="headerlink" title="可枚举性和遍历"></a>可枚举性和遍历</h2><p>对象的每个属性都有一个描述对象。用来控制该属性的行为。Object.getOwnPropertyDescriptor(object, ‘attributes’) 能获取到行为的描述对象。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> temp = &#123;</span><br><span class="line">	name: <span class="string">'xnnnnn'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.getOwnPropertyDescriptor(temp, <span class="string">'name'</span>))</span><br><span class="line"><span class="comment">// &#123;</span></span><br><span class="line"><span class="comment">// 	value: "xnnnnn", //属性对应的value</span></span><br><span class="line"><span class="comment">// 	writable: true, // 是否可被赋值运算符改变</span></span><br><span class="line"><span class="comment">// 	enumerable: true, // 是否可枚举</span></span><br><span class="line"><span class="comment">// 	configurable: true // 此描述对象是否能修改</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>可遍历对象可枚举的方法有(忽略enumberable为 false的)：</p>
+<ul>
+<li><p>for…in 遍历继承和自身的可枚举属性。</p>
+</li>
+<li><p>JSON.Stringfy() 字符串化可枚举的属性</p>
+</li>
+<li><p>Object.keys() 返回自身可枚举的键名</p>
+</li>
+<li><p>Object.assign() 只能拷贝自身的可枚举属性<br>其中for…in会遍历继承过来的属性，而其他三个不会</p>
+<h3 id="属性的遍历"><a href="#属性的遍历" class="headerlink" title="属性的遍历"></a>属性的遍历</h3><ul>
+<li>for…in<br>遍历继承和自身的可枚举属性不包括symbol</li>
+<li>Object.keys()<br>遍历自身可枚举属性的键值，返回一个数组。</li>
+<li>Object.getOwnPropertyNames()<br> 遍历自身所有的属性(不包括symbol属性，包括不可枚举属性)，返回一个数组。</li>
+<li>Object.getOwnPropertySymbol()<br>遍历自身的所有symbol属性的键名，返回一个数组。</li>
+<li>Reflect.ownKeys()<br>遍历自身的所有属性(包括symbol属性和不可枚举属性)的键名，返回一个数组。</li>
+</ul>
+</li>
+</ul>
+
       </div>
         <div class="support-author">
           <p>感谢您的阅读。 🙏
