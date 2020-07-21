@@ -48,7 +48,7 @@
       </li>
       <li>
         
-    更新 <time datetime="2020-07-17T06:31:35.054Z" itemprop="dateUpdated">2020-07-17</time>
+    更新 <time datetime="2020-07-21T08:35:12.629Z" itemprop="dateUpdated">2020-07-21</time>
 
       </li>
       <li id="busuanzi_container_page_pv">
@@ -146,9 +146,15 @@ _ : 单下划线。用来描述一个块或者块的子元素的一种状态。 
 <li><p>box-sizing: 设置宽高是否包含border和padding<br>属性：</p>
 <ol>
 <li>content-box:width和hight的属性只是content的部分，padding和border的单独算</li>
-<li>border-box:width和hight是content+padding+border的值</li>
+<li>border-box:width和hight是content+padding+border的值。</li>
 </ol>
 </li>
+<li><p>margin和span标签：今天遇到的是想给span标签添加marign-bottom没生效。<br>原因：span标签是行内元素，</p>
+<pre><code>- 直接设置margin-bottom和margin-top不生效。
+- margin-left和margin-right生效。</code></pre><p>解决办法：</p>
+<pre><code>对应的css属性内加入 &apos;display:block&apos;,之后top和bottom就会生效。</code></pre></li>
+<li><p>元素居中解决方案：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">flex</span>布局</span><br><span class="line">    <span class="selector-id">#XXX</span>&#123;</span><br><span class="line">        <span class="attribute">display</span>:flex;</span><br><span class="line">        <span class="attribute">justify-content</span>:center;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="selector-tag">IE8-9</span>时</span><br><span class="line">    <span class="selector-id">#XXX</span>&#123;</span><br><span class="line">        <span class="attribute">margin</span>:<span class="number">0</span>  auto;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">以上属性全部设置到父元素上</span><br></pre></td></tr></table></figure></li>
 </ol>
 
       </div>
