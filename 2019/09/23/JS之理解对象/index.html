@@ -48,7 +48,7 @@
       </li>
       <li>
         
-    更新 <time datetime="2020-07-22T06:54:58.058Z" itemprop="dateUpdated">2020-07-22</time>
+    更新 <time datetime="2020-07-22T09:24:12.040Z" itemprop="dateUpdated">2020-07-22</time>
 
       </li>
       <li id="busuanzi_container_page_pv">
@@ -107,8 +107,13 @@
 <h2 id="对象的解构"><a href="#对象的解构" class="headerlink" title="对象的解构"></a>对象的解构</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> &#123; b, a, ...c &#125; = &#123; <span class="attr">a</span>: <span class="number">1</span>, <span class="attr">b</span>: <span class="number">2</span>, <span class="attr">c</span>: <span class="number">3</span>, <span class="attr">d</span>: <span class="number">4</span> &#125;</span><br><span class="line"><span class="built_in">console</span>.log(a, b, c) <span class="comment">// 1 2 &#123;c: 3, d: 4&#125;</span></span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>解释：左右侧得有相同的属性名才会成功赋值，’…c’这种形式的会赋值右侧对象里可枚举的属性，但尚未读取的属性。 </li>
-<li>注意：解构赋值要求等号右面是个对象，还是浅拷贝。 右侧是null或者undefined会报错。 且 …c ,也要放在参数的最后。不然会报语法错误。</li>
+<li><p>备注：在上面的例子 b、a 属于解构赋值，能赋值继承过来的属性。…c属于扩展运算符的解构赋值不能复制继承过来的属性。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> proto = &#123;</span><br><span class="line">foo: <span class="string">'hello'</span>,</span><br><span class="line">	xx: <span class="string">'xnnnnn'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">foo: <span class="string">'world'</span>,</span><br><span class="line">find() &#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">super</span>.foo;</span><br><span class="line">&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.setPrototypeOf(obj, proto);</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> item <span class="keyword">in</span> obj)&#123;<span class="built_in">console</span>.log(item)&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> &#123;a, xx&#125;= obj <span class="comment">//解构赋值</span></span><br><span class="line"><span class="built_in">console</span>.log(xx) <span class="comment">//"xnnnnn"</span></span><br><span class="line"><span class="keyword">let</span> &#123;a,...xx&#125; = obj <span class="comment">// 扩展运算符解构赋值</span></span><br><span class="line"><span class="built_in">console</span>.log(xx) <span class="comment">// &#123;foo: "world", find: ƒ&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>解释：左右侧得有相同的属性名才会成功赋值，’…c’这种形式的会赋值右侧对象里可枚举的属性，但尚未读取的属性。 </p>
+</li>
+<li><p>注意：解构赋值要求等号右面是个对象，还是浅拷贝。 右侧是null或者undefined会报错。 且 …c ,也要放在参数的最后。不然会报语法错误。</p>
+</li>
 </ul>
 
       </div>
