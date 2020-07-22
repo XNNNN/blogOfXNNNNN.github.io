@@ -48,7 +48,7 @@
       </li>
       <li>
         
-    更新 <time datetime="2020-07-22T06:08:57.168Z" itemprop="dateUpdated">2020-07-22</time>
+    更新 <time datetime="2020-07-22T06:54:58.058Z" itemprop="dateUpdated">2020-07-22</time>
 
       </li>
       <li id="busuanzi_container_page_pv">
@@ -104,7 +104,13 @@
 </ul>
 </li>
 </ul>
-<h2 id="对象的解构"><a href="#对象的解构" class="headerlink" title="对象的解构"></a>对象的解构</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> &#123; a, b, ...c &#125; = &#123; <span class="attr">a</span>: <span class="number">1</span>, <span class="attr">b</span>: <span class="number">2</span>, <span class="attr">c</span>: <span class="number">3</span>, <span class="attr">d</span>: <span class="number">4</span> &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="对象的解构"><a href="#对象的解构" class="headerlink" title="对象的解构"></a>对象的解构</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> &#123; b, a, ...c &#125; = &#123; <span class="attr">a</span>: <span class="number">1</span>, <span class="attr">b</span>: <span class="number">2</span>, <span class="attr">c</span>: <span class="number">3</span>, <span class="attr">d</span>: <span class="number">4</span> &#125;</span><br><span class="line"><span class="built_in">console</span>.log(a, b, c) <span class="comment">// 1 2 &#123;c: 3, d: 4&#125;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>解释：左右侧得有相同的属性名才会成功赋值，’…c’这种形式的会赋值右侧对象里可枚举的属性，但尚未读取的属性。 </li>
+<li>注意：解构赋值要求等号右面是个对象，还是浅拷贝。 右侧是null或者undefined会报错。 且 …c ,也要放在参数的最后。不然会报语法错误。</li>
+</ul>
+
       </div>
         <div class="support-author">
           <p>感谢您的阅读。 🙏
