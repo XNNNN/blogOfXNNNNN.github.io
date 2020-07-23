@@ -48,7 +48,7 @@
       </li>
       <li>
         
-    更新 <time datetime="2020-07-22T09:24:12.040Z" itemprop="dateUpdated">2020-07-22</time>
+    更新 <time datetime="2020-07-23T02:29:32.824Z" itemprop="dateUpdated">2020-07-23</time>
 
       </li>
       <li id="busuanzi_container_page_pv">
@@ -115,6 +115,9 @@
 <li><p>注意：解构赋值要求等号右面是个对象，还是浅拷贝。 右侧是null或者undefined会报错。 且 …c ,也要放在参数的最后。不然会报语法错误。</p>
 </li>
 </ul>
+<h2 id="super"><a href="#super" class="headerlink" title="super"></a>super</h2><pre><code>指向当前对象的原型对象。
+注意：super表示原型对象时，只能用在对象的方法里。用在其他地方会报错。</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> superObj = &#123;</span><br><span class="line">	name: <span class="string">'xnnnn'</span>,</span><br><span class="line">	getName()&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">	name: <span class="string">'who?'</span>,</span><br><span class="line">	getName()&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="keyword">super</span>.name)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Object</span>.setPrototypeOf(obj, superObj) <span class="comment">// 设置原型对象</span></span><br><span class="line">obj.getName() <span class="comment">// xnnnnn</span></span><br></pre></td></tr></table></figure>
+
 
       </div>
         <div class="support-author">
