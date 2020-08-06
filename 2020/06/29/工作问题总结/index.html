@@ -48,7 +48,7 @@
       </li>
       <li>
         
-    更新 <time datetime="2020-08-04T07:46:05.818Z" itemprop="dateUpdated">2020-08-04</time>
+    更新 <time datetime="2020-08-06T06:56:52.462Z" itemprop="dateUpdated">2020-08-06</time>
 
       </li>
       <li id="busuanzi_container_page_pv">
@@ -161,7 +161,12 @@ _ : 单下划线。用来描述一个块或者块的子元素的一种状态。 
 <li><p>用watch监听变量做到在mounted时候就能监听变化，需要加上immediate属性。</p>
 </li>
 <li><p>需要从后面匹配路径包含固定格式和固定单词</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 用到的符号 *匹配零次或者多次、  | 或者、 符号转译需要在前面加 \、 匹配固定单词用\b </span></span><br><span class="line">    <span class="keyword">let</span> regExp = <span class="regexp">/\/(a-z)*+\.(a-z)+\/(\bxxnnn\b|\bsss\b)$/</span> <span class="comment">// /xx.xx/xxnnn or /xx.xx/sss</span></span><br></pre></td></tr></table></figure></li>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 用到的符号 *匹配零次或者多次、  | 或者、 符号转译需要在前面加 \、 匹配固定单词用\b </span></span><br><span class="line">    <span class="keyword">let</span> regExp = <span class="regexp">/\/(a-z)*+\.(a-z)+\/(\bxxnnn\b|\bsss\b)$/</span> <span class="comment">// /xx.xx/xxnnn or /xx.xx/sss</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>正则表达式有效率问题，写完表达式注意测试用时。</p>
+</li>
+<li><p>文字过长处理方法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// html 部分</span></span><br><span class="line">&lt;span <span class="class"><span class="keyword">class</span></span>=<span class="string">"demo"</span>&gt;<span class="number">1111</span>&lt;span&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">// css 部分</span></span><br><span class="line">.demo &#123;</span><br><span class="line">    display: inline-block;</span><br><span class="line">    width: <span class="number">100</span>px</span><br><span class="line">    white-space: nowrap; <span class="comment">// 不让文字换行</span></span><br><span class="line">    overflow: hidden; <span class="comment">// 过长部分的处理方式</span></span><br><span class="line">    text-overflow: ellipsis; <span class="comment">// 如何处理溢出部分</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ol>
 
       </div>
