@@ -48,7 +48,7 @@
       </li>
       <li>
         
-    更新 <time datetime="2020-08-07T06:56:50.493Z" itemprop="dateUpdated">2020-08-07</time>
+    更新 <time datetime="2020-08-08T02:30:08.290Z" itemprop="dateUpdated">2020-08-08</time>
 
       </li>
       <li id="busuanzi_container_page_pv">
@@ -169,6 +169,14 @@ _ : 单下划线。用来描述一个块或者块的子元素的一种状态。 
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// html 部分</span></span><br><span class="line">&lt;span <span class="class"><span class="keyword">class</span></span>=<span class="string">"demo"</span>&gt;<span class="number">1111</span>&lt;span&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">// css 部分</span></span><br><span class="line">.demo &#123;</span><br><span class="line">    display: inline-block;</span><br><span class="line">    width: <span class="number">100</span>px</span><br><span class="line">    white-space: nowrap; <span class="comment">// 不让文字换行</span></span><br><span class="line">    overflow: hidden; <span class="comment">// 过长部分的处理方式</span></span><br><span class="line">    text-overflow: ellipsis; <span class="comment">// 如何处理溢出部分</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>复习：v-if更高的切换开销，v-show更高的初始化渲染开销。 v-if是惰性的，初始化条件为假的时候则什么也不做直到条件变为真，才会渲染条件块。</p>
+</li>
+<li><p>v-html使用注意点</p>
+<ol start="0">
+<li><code>&lt;div v-html=&quot;html&quot;&gt;&lt;/div&gt;</code></li>
+<li>等同于js原生的element.innerHTML()方法，可以插入html标签</li>
+<li>不再用户能输入的地方使用，方式xss攻击（注入脚本）</li>
+<li>组件内scope的样式，在v-html中不会生效因为没内容按普通 HTML 插入 - 不会作为 Vue 模板进行编译。</li>
+</ol>
 </li>
 </ol>
 
