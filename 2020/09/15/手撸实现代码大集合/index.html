@@ -48,7 +48,7 @@
       </li>
       <li>
         
-    更新 <time datetime="2020-09-14T17:00:12.266Z" itemprop="dateUpdated">2020-09-15</time>
+    更新 <time datetime="2020-09-17T10:09:41.182Z" itemprop="dateUpdated">2020-09-17</time>
 
       </li>
       <li id="busuanzi_container_page_pv">
@@ -63,42 +63,11 @@
         <p>最近面试经常会问手写代码实现API，我是觉得能够<code>正确的</code>使用就算成功(在合适的场景、知道兼容性、参数意义、原理)。但是面试官也得区分面试者，于是乎手写代码的话还是算个不错的筛子。所以自己在看别人优秀的代码的时候顺手也记录一下。初二老师用两巴掌告诉了一个道理：文言文底下的注释是人家的不是你自己的。自己要学会必须积累。(；д；)</p>
 <ol>
 <li><p>实现Call<br><a href="https://github.com/mqyqingfeng/Blog/issues/11" target="_blank" rel="noopener">代码来源：</a></p>
-<pre class=" language-javascript"> <span class="built_in">Function</span>.prototype.call2 = <span class="function"><span class="keyword">function</span> (<span class="params"><code class="language-javascript"> <span class="built_in">Function</span>.prototype.call2 = <span class="function"><span class="keyword">function</span> (<span class="params">context</span>) </span>{
-     <span class="keyword">var</span> context = context || <span class="built_in">window</span>;
-     context.fn = <span class="keyword">this</span>;
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.call2 = <span class="function"><span class="keyword">function</span> (<span class="params">context</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> context = context || <span class="built_in">window</span>;</span><br><span class="line">    context.fn = <span class="keyword">this</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> args = [];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">1</span>, len = <span class="built_in">arguments</span>.length; i &lt; len; i++) &#123;</span><br><span class="line">        args.push(<span class="string">'arguments['</span> + i + <span class="string">']'</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> result = <span class="built_in">eval</span>(<span class="string">'context.fn('</span> + args +<span class="string">')'</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">delete</span> context.fn</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 测试一下</span></span><br><span class="line"><span class="keyword">var</span> value = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    value: <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.value);</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        value: <span class="keyword">this</span>.value,</span><br><span class="line">        name: name,</span><br><span class="line">        age: age</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bar.call2(<span class="literal">null</span>); <span class="comment">// 2</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(bar.call2(obj, <span class="string">'kevin'</span>, <span class="number">18</span>));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>斐波那锲函数实现</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 递归实现</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fibonacci</span>(<span class="params">n, ac1 = <span class="number">1</span>, ac2 = <span class="number">2</span></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n &lt;= <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> ac2</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> fibonacci(n<span class="number">-1</span>, ac2,ac1 +ac2)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// generator</span></span><br><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">fibonacci</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> [prev, curr] = [<span class="number">0</span>, <span class="number">1</span>]</span><br><span class="line">    <span class="keyword">for</span>(;;)&#123;</span><br><span class="line">        <span class="keyword">yield</span> curr</span><br><span class="line">        [prev, curr] = [curr, prev + curr]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> n <span class="keyword">of</span> fibonacci())&#123;</span><br><span class="line">    <span class="keyword">if</span>(n &gt; <span class="number">1000</span>) <span class="keyword">break</span></span><br><span class="line">    <span class="built_in">console</span>.log(n)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-     <span class="keyword">var</span> args = [];
-     <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">1</span>, len = <span class="built_in">arguments</span>.length; i < len; i++) {
-         args.push(<span class="string">'arguments['</span> + i + <span class="string">']'</span>);
-     }
-
-     <span class="keyword">var</span> result = <span class="built_in">eval</span>(<span class="string">'context.fn('</span> + args +<span class="string">')'</span>);
-
-     <span class="keyword">delete</span> context.fn
-     <span class="keyword">return</span> result;
- }
-
- <span class="comment">// 测试一下</span>
- <span class="keyword">var</span> value = <span class="number">2</span>;
-
- <span class="keyword">var</span> obj = {
-     value: <span class="number">1</span>
- }
-
- <span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params">name, age</span>) </span>{
-     <span class="built_in">console</span>.log(<span class="keyword">this</span>.value);
-     <span class="keyword">return</span> {
-         value: <span class="keyword">this</span>.value,
-         name: name,
-         age: age
-     }
- }
-
- bar.call2(<span class="literal">null</span>); <span class="comment">// 2</span>
-
- <span class="built_in">console</span>.log(bar.call2(obj, <span class="string">'kevin'</span>, <span class="number">18</span>));
-<span class="string">``</span>
-</code></span></span></pre>
 </li>
 </ol>
 
