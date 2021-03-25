@@ -48,7 +48,7 @@
       </li>
       <li>
         
-    更新 <time datetime="2021-03-18T02:45:15.073Z" itemprop="dateUpdated">2021-03-18</time>
+    更新 <time datetime="2021-03-25T07:42:26.553Z" itemprop="dateUpdated">2021-03-25</time>
 
       </li>
       <li id="busuanzi_container_page_pv">
@@ -220,7 +220,7 @@ _ : 单下划线。用来描述一个块或者块的子元素的一种状态。 
 <li>a标签上 target 的几个属性值： tab、 window、iframe，_self: 当前页面加载、_blank: 新窗口打开</li>
 <li>ul li 前的点的样式控制  list-style 属性控制， 和overflow：hidden 属性配合可能会导致点消失，可以配合list-style-position: inside; 来解决</li>
 <li>可替换元素： 它们的内容不受当前文档的样式的影响。CSS 可以影响可替换元素的位置，但不会影响到可替换元素自身的内容。（img iframe video）</li>
-<li>object-fix： 可以指定可替换元素的内容如何适应到其容器的宽和高。<pre><code>none: 原有尺寸
+<li>object-fit： 可以指定可替换元素的内容如何适应到其容器的宽和高。<pre><code>none: 原有尺寸
 contain: 保持长宽比，填充容器
 fill: 拉伸填充
 cover: 裁剪填充
@@ -230,6 +230,13 @@ scale-down: 缩放</code></pre></li>
 offsetX： 触发元素的左上角的距离
 pageX：   相对于整个页面左上角的高度（包含在视窗内的元素以及不在视窗内的元素，滚动条。。）</code></pre></li>
 <li>node-sass版本要和node版本对应，要不会出BUG。</li>
+<li>vue-router相关：<ul>
+<li>npm安装之后新建router文件夹、以及内部index.js，在这里配置路由。</li>
+<li>vue-router配置命名路由时,VueRouter对象里的是 routes 。写成routers不生效。</li>
+<li>在main.js里引入index.js文件以及 Vue.use(VueRouter)</li>
+<li>在页面中直接 this.$router 使用</li>
+</ul>
+</li>
 </ol>
 
       </div>
