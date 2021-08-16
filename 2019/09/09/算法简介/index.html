@@ -19,7 +19,7 @@
   <link rel="stylesheet" type="text/css" href="/./style/main.css">
 	<link rel="shortcut icon" href="/./img/aside/20gh00.jpg" title="Favicon">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-	<title>从头到尾的算法</title>
+	<title>算法学习</title>
   
   
 </head>
@@ -36,7 +36,7 @@
     
   
   <h1 class="title">
-    从头到尾的算法
+    算法学习
   </h1>
   
 
@@ -48,7 +48,7 @@
       </li>
       <li>
         
-    更新 <time datetime="2019-10-16T15:03:16.000Z" itemprop="dateUpdated">2019-10-16</time>
+    更新 <time datetime="2021-06-30T07:13:22.915Z" itemprop="dateUpdated">2021-06-30</time>
 
       </li>
       <li id="busuanzi_container_page_pv">
@@ -71,6 +71,13 @@
 <hr>
 <p>一般来说，对于包含n个元素的列表，用二分查找最多需要log2n(以二为底n的对数)，用二分法查找最多需要log2n步，而简单查找最毒需要n步。<br><strong>实现代码：</strong></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>,<span class="number">11</span>,<span class="number">12</span>,<span class="number">13</span>,<span class="number">14</span>,<span class="number">15</span>]</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dichotomy</span>(<span class="params">arr, findNum</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> index = <span class="built_in">Math</span>.floor(arr.length / <span class="number">2</span>)</span><br><span class="line">    <span class="keyword">let</span> beforeIndex = <span class="number">0</span><span class="comment">// 记录上次index的位置</span></span><br><span class="line">    <span class="keyword">let</span> count = <span class="number">0</span> <span class="comment">//循环次数</span></span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        count++</span><br><span class="line">        <span class="keyword">if</span> (arr[index] &gt; findNum)&#123; <span class="comment">// 中间值大于要找的数</span></span><br><span class="line">            beforeIndex = index</span><br><span class="line">            index = <span class="built_in">Math</span>.floor(index / <span class="number">2</span>)</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span>(arr[index] &lt; findNum) &#123; <span class="comment">// 中间值小于要找的数</span></span><br><span class="line">            <span class="keyword">if</span> (beforeIndex === <span class="number">0</span>) &#123; <span class="comment">// 判断是不是第一次循环</span></span><br><span class="line">                index = <span class="built_in">Math</span>.floor((index + arr.length)/<span class="number">2</span>)</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                index = <span class="built_in">Math</span>.floor((index + beforeIndex)/<span class="number">2</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">`数组下标<span class="subst">$&#123;index&#125;</span>,循环次数<span class="subst">$&#123;count&#125;</span>.`</span> </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">dichotomy(arr,<span class="number">5</span>) <span class="comment">//数组下标4,循环次数6.</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h2><ol>
+<li>确定问题</li>
+<li>拆分问题</li>
+<li>拆分问题求解</li>
+</ol>
+
       </div>
         <div class="support-author">
           <p>感谢您的阅读。 🙏

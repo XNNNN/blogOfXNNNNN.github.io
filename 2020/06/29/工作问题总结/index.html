@@ -48,7 +48,7 @@
       </li>
       <li>
         
-    更新 <time datetime="2021-04-06T06:04:08.960Z" itemprop="dateUpdated">2021-04-06</time>
+    更新 <time datetime="2021-08-16T08:13:57.692Z" itemprop="dateUpdated">2021-08-16</time>
 
       </li>
       <li id="busuanzi_container_page_pv">
@@ -216,28 +216,40 @@ _ : 单下划线。用来描述一个块或者块的子元素的一种状态。 
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --list // 查看当前文件夹的git配置</span><br></pre></td></tr></table></figure>
 
 <ol start="45">
-<li>a标签嵌套a标签会解析错误</li>
-<li>a标签上 target 的几个属性值： tab、 window、iframe，_self: 当前页面加载、_blank: 新窗口打开</li>
-<li>ul li 前的点的样式控制  list-style 属性控制， 和overflow：hidden 属性配合可能会导致点消失，可以配合list-style-position: inside; 来解决</li>
-<li>可替换元素： 它们的内容不受当前文档的样式的影响。CSS 可以影响可替换元素的位置，但不会影响到可替换元素自身的内容。（img iframe video）</li>
-<li>object-fit： 可以指定可替换元素的内容如何适应到其容器的宽和高。<pre><code>none: 原有尺寸
+<li><p>a标签嵌套a标签会解析错误</p>
+</li>
+<li><p>a标签上 target 的几个属性值： tab、 window、iframe，_self: 当前页面加载、_blank: 新窗口打开</p>
+</li>
+<li><p>ul li 前的点的样式控制  list-style 属性控制， 和overflow：hidden 属性配合可能会导致点消失，可以配合list-style-position: inside; 来解决</p>
+</li>
+<li><p>可替换元素： 它们的内容不受当前文档的样式的影响。CSS 可以影响可替换元素的位置，但不会影响到可替换元素自身的内容。（img iframe video）</p>
+</li>
+<li><p>object-fit： 可以指定可替换元素的内容如何适应到其容器的宽和高。</p>
+<pre><code>none: 原有尺寸
 contain: 保持长宽比，填充容器
 fill: 拉伸填充
 cover: 裁剪填充
 scale-down: 缩放</code></pre></li>
-<li>span之间没有样式控制却有个间隙？<br>原因： 是span之间的回车符被解析成了空格</li>
-<li>几个坐标的起始位置：<pre><code>clientX： 相对于窗口左上角的距离
+<li><p>span之间没有样式控制却有个间隙？<br>原因： 是span之间的回车符被解析成了空格</p>
+</li>
+<li><p>几个坐标的起始位置：</p>
+<pre><code>clientX： 相对于窗口左上角的距离
 offsetX： 触发元素的左上角的距离
 pageX：   相对于整个页面左上角的高度（包含在视窗内的元素以及不在视窗内的元素，滚动条。。）</code></pre></li>
-<li>node-sass版本要和node版本对应，要不会出BUG。</li>
-<li>vue-router相关：<ul>
+<li><p>node-sass版本要和node版本对应，要不会出BUG。</p>
+</li>
+<li><p>vue-router相关：</p>
+<ul>
 <li>npm安装之后新建router文件夹、以及内部index.js，在这里配置路由。</li>
 <li>vue-router配置命名路由时,VueRouter对象里的是 routes 。写成routers不生效。</li>
 <li>在main.js里引入index.js文件以及 Vue.use(VueRouter)</li>
 <li>在页面中直接 this.$router 使用</li>
 </ul>
 </li>
-<li>多写catch</li>
+<li><p>多写catch</p>
+</li>
+<li><p>background 是css的简写属性，用于一次性定义各种背景属性，包括color、image、origin、size、repeat；<br>说这个是因为在一次写样式中background-size，写在了background 属性前面，然后没有生效。 原因就是因为background是个属性集合把之前的size样式覆盖了。</p>
+</li>
 </ol>
 
       </div>
