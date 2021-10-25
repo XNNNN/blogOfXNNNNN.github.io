@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="keywords" content="xnnnnn">
+  <meta name="description" content="X_NNNNN的博客">
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="https://busuanzi.ibruce.info">
+  <link rel="dns-prefetch" href="https://at.alicdn.com">
+  
+  
+  
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+  <link rel="dns-prefetch" href="https://api.github.com">
+  <link rel="dns-prefetch" href="https://avatars3.githubusercontent.com">
+  
+  <link rel="stylesheet" type="text/css" href="/./style/main.css">
+	<link rel="shortcut icon" href="/./img/aside/20gh00.jpg" title="Favicon">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+	<title>算法学习</title>
+  
+  
+</head>
+<body>
+  <canvas id="pattern-placeholder" height="230"></canvas>
+<div class="navbar-header">
+  <a class="blog-title" href="/">X_NNNNN</a>
+  <a class="face-img" href="/">
+    <img src="/./img/aside/20gh00.jpg">
+  </a>
+</div>
+<main>
+  <div class="article-title">
+    
+  
+  <h1 class="title">
+    算法学习
+  </h1>
+  
+
+
+    <ul class="article-info">
+      <li>
+        发布
+        <time datetime="2019-09-09T15:28:55.000Z" itemprop="datePublished">2019-09-09</time>
+      </li>
+      <li>
+        
+    更新 <time datetime="2021-10-25T08:43:22.195Z" itemprop="dateUpdated">2021-10-25</time>
+
+      </li>
+      <li id="busuanzi_container_page_pv">
+        阅读 <span id="busuanzi_value_page_pv"></span>
+      </li>
+    </ul>
+  </div>
+  <div class="container">
+    <div class="article">
+      <div class="content">
+        
+        <p>又开了一个系列的新坑，上个月买了两本书一本是《重构》另外一本就是今天我要讲的《图解算法》，今天这篇就算开个头。当做我自己的学习日记。我会把我自己在学这本书中遇到的知识点总结起来，供大家（我自己）使用。</p>
+<h2 id="需要具备的知识"><a href="#需要具备的知识" class="headerlink" title="需要具备的知识"></a>需要具备的知识</h2><p> 基本的代数知识，比如 1 + 1 = 2。</p>
+<h2 id="运行时间"><a href="#运行时间" class="headerlink" title="运行时间"></a>运行时间</h2><p>一般而言，应选择下率最高的算法，以最大限度的减少运行的时间或者空间。</p>
+<h3 id="O（大写的o）表示法"><a href="#O（大写的o）表示法" class="headerlink" title="O（大写的o）表示法"></a>O（大写的o）表示法</h3><p>她表示的是让你能够比较操作数，而不是以秒为单位的速度。<br><img src="/image/%E7%AE%97%E6%B3%95/%E6%9B%B2%E7%BA%BF%E5%9B%BE.jpg" alt="灵魂画家"></p>
+<h3 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h3><p>算法的速度指的并非是时间，而是操作式的增速。<br>O(log n)比O(n)快，当需要搜索的元素越多时，前者比后者块的越多。</p>
+<h2 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h2><p>二分查找是一种算法，其输入是一个<strong>有序的元素列表</strong>。如果要查找的元素包含在列表中，二分查找返回其位置；否则返回null。</p>
+<hr>
+<p>我们一般查字典的时候一般是先从目录的拼音开始查，找到具体的字之后再翻到具体的页数。要是经常查字典的人会随便翻一页看页码上面的拼音第一个字母与自己想查的的那个字的拼音比较。来决定往前翻还是往后翻。确定拼音的第一个字母之后再比较第二个字母以此类推。就能找到你想查的那个字（如果不会读，当我没说）。其实这也算是算法，就是二分法的基本原理。</p>
+<hr>
+<p>一般来说，对于包含n个元素的列表，用二分查找最多需要log2n(以二为底n的对数)，用二分法查找最多需要log2n步，而简单查找最毒需要n步。<br><strong>实现代码：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>,<span class="number">11</span>,<span class="number">12</span>,<span class="number">13</span>,<span class="number">14</span>,<span class="number">15</span>]</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dichotomy</span>(<span class="params">arr, findNum</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> index = <span class="built_in">Math</span>.floor(arr.length / <span class="number">2</span>)</span><br><span class="line">    <span class="keyword">let</span> beforeIndex = <span class="number">0</span><span class="comment">// 记录上次index的位置</span></span><br><span class="line">    <span class="keyword">let</span> count = <span class="number">0</span> <span class="comment">//循环次数</span></span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        count++</span><br><span class="line">        <span class="keyword">if</span> (arr[index] &gt; findNum)&#123; <span class="comment">// 中间值大于要找的数</span></span><br><span class="line">            beforeIndex = index</span><br><span class="line">            index = <span class="built_in">Math</span>.floor(index / <span class="number">2</span>)</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span>(arr[index] &lt; findNum) &#123; <span class="comment">// 中间值小于要找的数</span></span><br><span class="line">            <span class="keyword">if</span> (beforeIndex === <span class="number">0</span>) &#123; <span class="comment">// 判断是不是第一次循环</span></span><br><span class="line">                index = <span class="built_in">Math</span>.floor((index + arr.length)/<span class="number">2</span>)</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                index = <span class="built_in">Math</span>.floor((index + beforeIndex)/<span class="number">2</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">`数组下标<span class="subst">$&#123;index&#125;</span>,循环次数<span class="subst">$&#123;count&#125;</span>.`</span> </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">dichotomy(arr,<span class="number">5</span>) <span class="comment">//数组下标4,循环次数6.</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h2><ol>
+<li>确定问题</li>
+<li>拆分问题</li>
+<li>拆分问题求解</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 53.最大子序和</span></span><br><span class="line"><span class="comment">// nums = [-2,1,-3,4,-1,2,1,-5,4]</span></span><br><span class="line"><span class="keyword">var</span> maxSubArray = <span class="function"><span class="keyword">function</span> (<span class="params">nums</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> ans = nums[<span class="number">0</span>]</span><br><span class="line">  <span class="keyword">let</span> sum = <span class="number">0</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> num <span class="keyword">of</span> nums) &#123;</span><br><span class="line">    <span class="keyword">if</span> (sum &gt; <span class="number">0</span>) &#123;</span><br><span class="line">      sum += num</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      sum = num</span><br><span class="line">    &#125;</span><br><span class="line">    ans = <span class="built_in">Math</span>.max(ans, sum)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> ans</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><p>比较大小，两两交换。</p>
+<h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><pre><code>当前位置 currentIndex
+交换的位置: 
+比较过程中最小（大）的值 compare(compareValue, compareIndex)
+个人理解方便记忆：先从第一个开始，把第一个（值和下标）拿在手里然后按顺序来比较遇到更小的就更新手里的值，直到遍历结束。这时候手里的就是最小的值，然后把这个值和第一个值交换位置。一轮结束。开启第二轮从第二个开始往下继续遍历，如此循环直到最后一个。</code></pre><h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><p>从一个开始遍历，遇到比自己小的插到后面，删掉原来的位置，然后把原来位置和插入位置中间的整体后移一位。</p>
+
+      </div>
+        <div class="support-author">
+          <p>感谢您的阅读。 🙏
+          <!-- <a href="https://888.com/index.html" target="_blank">关于转载请看这里</a> -->
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+        </div>
+        <!--
+            <div class="like ">
+              <div class="like-button">
+                <a id="like-note" href="">
+                  <i class="icon-heart"></i>喜欢
+                </a>
+              </div>
+              <span id="likes-count">256</span>
+            </div>
+        -->
+        <div class="otherLink">
+          <div class="previous">
+          </div>
+          <div class="next">
+          </div>
+        </div>
+        <div class="comments" id="comments">
+          
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+  const gitalk = new Gitalk({
+    clientID: '7bd7d05b167b51a6e7e3',
+    clientSecret: '67c9eeb18ea1a16443ed9f0eb8d159dc8f9f5694',
+    repo: 'https://github.com/XNNNN/blogOfX_NNNNN.github.io',
+    owner: 'X_NNNNN',
+    admin: ['X_NNNNN'],
+    id: location.pathname,      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false
+  })
+
+  gitalk.render('comments');
+</script>
+
+
+        </div>
+      </div>
+    </div>
+   
+</main>
+<div class="footer">
+  <div class="info">
+    <p>
+    <a href="https://hexo.io"> Hexo </a> 强力驱动 |
+      <a href="https://github.com/Youthink/hexo-themes-yearn"> Yearn </a>
+      主题
+    </p>
+    <p>&copy; </p>
+  </div>
+</div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true, 
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+<script>//console
+  var consoleConfig = '\n欢迎访问 (づ｡◕‿‿◕｡)づ！\n'.split(',');
+  var canConsole = true;
+  var consoleInfo = (function(consoleConfig) {
+  if (!canConsole || !consoleConfig || consoleConfig.length < 1) {
+    return;
+  }
+  var consoleColor = '#6190e8';
+  var _console;
+  var backgroundTextStyle = 'padding: 1px 5px;color: #fff;background: ' + consoleColor + ';'
+  var textStyle = 'color: ' + consoleColor + ';';
+
+  consoleConfig.map(o => {
+    var num = (o.match(/%c/g) || []).length;
+    if(/^http(s)?:\/\//.test(o)) {
+      console.log('%c     ', 'background: url(' + o + ') no-repeat left center;font-size: 180px;');
+      return;
+    }
+    if (num > 0) {
+      var logArguments = [];
+      for (var i = 0; i < num; i++) {
+        if (i % 2 === 0) {
+          logArguments.push(backgroundTextStyle);
+        } else {
+          logArguments.push(textStyle);
+        }
+      }
+      (_console = console).log.apply(_console, ['%c' + o, textStyle].concat(logArguments));
+      return;
+    }
+    console.log('%c' + o, textStyle);
+  });
+}(consoleConfig));</script><script type="text/javascript" src="/./js/main.js"></script>
+
+  <script src="//at.alicdn.com/t/font_159214_mvtxvg9me9.js"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":70,"vOffset":30},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
