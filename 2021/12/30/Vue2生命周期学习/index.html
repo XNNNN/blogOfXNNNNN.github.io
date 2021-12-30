@@ -48,7 +48,7 @@
       </li>
       <li>
         
-    更新 <time datetime="2021-12-30T10:09:18.717Z" itemprop="dateUpdated">2021-12-30</time>
+    更新 <time datetime="2021-12-30T10:12:17.019Z" itemprop="dateUpdated">2021-12-30</time>
 
       </li>
       <li id="busuanzi_container_page_pv">
@@ -74,10 +74,8 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 初始化组件实例关系属性，比如 $parent、$children、$root、</span></span><br><span class="line">initLifecycle(vm)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 自定义事件注册监听(如：$emit、$once)</span></span><br><span class="line">initEvents(vm)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建元素: vm.$createElement</span></span><br><span class="line"><span class="comment">// 插槽信息：vm.$slot</span></span><br><span class="line">initRender(vm)</span><br><span class="line"></span><br><span class="line"><span class="comment">// beforeCreate 钩子函数</span></span><br><span class="line">callHook(vm, <span class="string">'beforeCreate'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 初始化组件的 inject 配置项</span></span><br><span class="line"><span class="comment">// resolve injections before data/props</span></span><br><span class="line">initInjections(vm)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 初始化响应式数据，如 props, methods, data, computed, watch</span></span><br><span class="line">initState(vm)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 解析实例 vm.$options.provide 对象，挂载到 vm._provided 上，和 inject 对应。</span></span><br><span class="line"><span class="comment">// resolve provide after data/props</span></span><br><span class="line">initProvide(vm)</span><br><span class="line"></span><br><span class="line"><span class="comment">// created 钩子函数</span></span><br><span class="line">callHook(vm, <span class="string">'created'</span>)</span><br></pre></td></tr></table></figure>
 
 <p>疑惑点：</p>
-<ol>
-<li>为啥initInjections(vm) 在 initProvide(vm) 之前？</li>
-</ol>
 <ul>
+<li>为啥initInjections(vm) 在 initProvide(vm) 之前？</li>
 <li>因为在 initState() 阶段可能需要 initInjections 中的数据，initProvide() 可能需要initState() 中的数据。</li>
 </ul>
 <h2 id="编译阶段-amp-amp-更新阶段"><a href="#编译阶段-amp-amp-更新阶段" class="headerlink" title="编译阶段 &amp;&amp; 更新阶段"></a>编译阶段 &amp;&amp; 更新阶段</h2><p>源码： src/platforms/web/entry-runtime-with-compiler.js</p>
