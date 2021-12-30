@@ -48,7 +48,7 @@
       </li>
       <li>
         
-    更新 <time datetime="2021-12-30T09:58:07.579Z" itemprop="dateUpdated">2021-12-30</time>
+    更新 <time datetime="2021-12-30T10:09:18.717Z" itemprop="dateUpdated">2021-12-30</time>
 
       </li>
       <li id="busuanzi_container_page_pv">
@@ -60,13 +60,9 @@
     <div class="article">
       <div class="content">
         
-        <h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><ul>
-<li><a href="https://juejin.cn/post/6973196579918315533#comment" target="_blank" rel="noopener">Vue2 源码总结梳理</a></li>
-<li><a href="https://segmentfault.com/a/1190000040794757" target="_blank" rel="noopener">Vue 的完整生命周期源码流程详解
-</a><h2 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h2>源码部分里的生命周期分一下几个部分。<br>源码静态变量文件：src/shared/constants.js<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> LIFECYCLE_HOOKS = [</span><br><span class="line">  <span class="string">'beforeCreate'</span>,</span><br><span class="line">  <span class="string">'created'</span>,</span><br><span class="line">  <span class="string">'beforeMount'</span>,</span><br><span class="line">  <span class="string">'mounted'</span>,</span><br><span class="line">  <span class="string">'beforeUpdate'</span>,</span><br><span class="line">  <span class="string">'updated'</span>,</span><br><span class="line">  <span class="string">'beforeDestroy'</span>,</span><br><span class="line">  <span class="string">'destroyed'</span>,</span><br><span class="line">  <span class="string">'activated'</span>,</span><br><span class="line">  <span class="string">'deactivated'</span>,</span><br><span class="line">  <span class="string">'errorCaptured'</span>,</span><br><span class="line">  <span class="string">'serverPrefetch'</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+        <h2 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h2><p>源码部分里的生命周期分一下几个部分。<br>源码静态变量文件：src/shared/constants.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> LIFECYCLE_HOOKS = [</span><br><span class="line">  <span class="string">'beforeCreate'</span>,</span><br><span class="line">  <span class="string">'created'</span>,</span><br><span class="line">  <span class="string">'beforeMount'</span>,</span><br><span class="line">  <span class="string">'mounted'</span>,</span><br><span class="line">  <span class="string">'beforeUpdate'</span>,</span><br><span class="line">  <span class="string">'updated'</span>,</span><br><span class="line">  <span class="string">'beforeDestroy'</span>,</span><br><span class="line">  <span class="string">'destroyed'</span>,</span><br><span class="line">  <span class="string">'activated'</span>,</span><br><span class="line">  <span class="string">'deactivated'</span>,</span><br><span class="line">  <span class="string">'errorCaptured'</span>,</span><br><span class="line">  <span class="string">'serverPrefetch'</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 
-</li>
-</ul>
 <h2 id="主要过程"><a href="#主要过程" class="headerlink" title="主要过程"></a>主要过程</h2><ol>
 <li>初始化阶段</li>
 <li>编译阶段</li>
@@ -109,8 +105,13 @@
 <h2 id="errorCaptured"><a href="#errorCaptured" class="headerlink" title="errorCaptured"></a>errorCaptured</h2><p>在捕获一个来自后代组件的错误时被调用。</p>
 <h2 id="serverPrefetch"><a href="#serverPrefetch" class="headerlink" title="serverPrefetch"></a>serverPrefetch</h2><p>处理ssr的serverPrefetch，允许我们在渲染的过程中 “等待” 异步数据，可以在任何组件中使用。</p>
 <h2 id="顺便拓展的知识"><a href="#顺便拓展的知识" class="headerlink" title="顺便拓展的知识"></a>顺便拓展的知识</h2><ol>
-<li>$forceUpdate的实现方法是调用watcher的update(),触发更新。</li>
+<li>$forceUpdate的实现方法是调用watcher的update(),触发更新。<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2></li>
 </ol>
+<ul>
+<li><a href="https://juejin.cn/post/6973196579918315533#comment" target="_blank" rel="noopener">Vue2 源码总结梳理</a></li>
+<li><a href="https://segmentfault.com/a/1190000040794757" target="_blank" rel="noopener">Vue 的完整生命周期源码流程详解
+</a></li>
+</ul>
 
       </div>
         <div class="support-author">
