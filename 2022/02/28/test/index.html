@@ -24,97 +24,99 @@
   
 </head>
 <body>
-  <div class="left-aside">
-    <div class="face-img"><img src="/./img/aside/20gh00.jpg"></div>
-    <div class="intro-word">
-        <h2>X_NNNNN</h2>
-        <p></p>
-    </div>
-    <div class="sns">
-        <ul>
-            
-            <li>
-                <a class="github" target="_blank" href="https://github.com/XNNNN" title="github">
-                    <img src="/./img/icon-github.png" alt="github" data-tooltip="github">
-                </a>
-            </li>
-            
-            <li>
-                <a class="email" target="_blank" href="/735828312@qq.com" title="email">
-                    <img src="/./img/icon-email.png" alt="email" data-tooltip="email">
-                </a>
-            </li>
-            
-        </ul>
-    </div>
+  <canvas id="pattern-placeholder" height="230"></canvas>
+<div class="navbar-header">
+  <a class="blog-title" href="/">X_NNNNN</a>
+  <a class="face-img" href="/">
+    <img src="/./img/aside/20gh00.jpg">
+  </a>
 </div>
-<div class="right-aside">
-    <div class="right-nav ms">
-        <div class="main">
-          <svg id="nav-menu" class="icon icon-menu" aria-hidden="true">
-            <use xlink:href="#icon-menu"/>
-          </svg>
-          <ul class="left">
-              
-          </ul>
-          <div class="search">
-            <div class="search-box">
-              <input type="search" id="search" class="input-search" placeholder="搜索">
-              <i class="icon-search"></i>
-              <div class="search-result-box">
-                <ul id="search-result"></ul>
+<main>
+  <div class="article-title">
+    
+
+    <ul class="article-info">
+      <li>
+        发布
+        <time datetime="2022-02-28T08:15:27.289Z" itemprop="datePublished">2022-02-28</time>
+      </li>
+      <li>
+        
+    更新 <time datetime="2022-03-30T10:54:24.219Z" itemprop="dateUpdated">2022-03-30</time>
+
+      </li>
+      <li id="busuanzi_container_page_pv">
+        阅读 <span id="busuanzi_value_page_pv"></span>
+      </li>
+    </ul>
+  </div>
+  <div class="container">
+    <div class="article">
+      <div class="content">
+        
+        function findNumber (array){
+  let objTemp = {}
+  for(let i = 0; i < array.length; i++) {
+    objTemp[array[i]]++
+  }
+}
+let a = [1,2,3,4,5,6,2]
+      </div>
+        <div class="support-author">
+          <p>感谢您的阅读。 🙏
+          <!-- <a href="https://888.com/index.html" target="_blank">关于转载请看这里</a> -->
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+        </div>
+        <!--
+            <div class="like ">
+              <div class="like-button">
+                <a id="like-note" href="">
+                  <i class="icon-heart"></i>喜欢
+                </a>
               </div>
+              <span id="likes-count">256</span>
             </div>
-            <svg id="nav-search" class="icon icon-search" aria-hidden="true">
-              <use xlink:href="#icon-search"/>
-            </svg>
+        -->
+        <div class="otherLink">
+          <div class="previous">
+          </div>
+          <div class="next">
           </div>
         </div>
-    </div>
-    <div class="right-main">
-        <div class="category">
-            <ul>
-                <li><a href="/" class>最新</a></li>
-                
-            </ul>
-        </div>
-        <div class="clear"></div>
-        <div class="list">
-            <div>
-                
-                
+        <div class="comments" id="comments">
+          
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+  const gitalk = new Gitalk({
+    clientID: '7bd7d05b167b51a6e7e3',
+    clientSecret: '67c9eeb18ea1a16443ed9f0eb8d159dc8f9f5694',
+    repo: 'https://github.com/XNNNN/blogOfX_NNNNN.github.io',
+    owner: 'X_NNNNN',
+    admin: ['X_NNNNN'],
+    id: location.pathname,      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false
+  })
 
-                
-                
-
-            </div>
-        </div>
-        <div class="clear"></div>
-        <div class="hosted">
-          <ul>
-            <li class="coding">
-              <a href="https://coding.net/pages">
-                <img src="/./img/coding.png">
-              </a>
-            </li>
-            <li class="github-pages">
-              <a href="https://pages.github.com">
-                <img src="/./img/github-pages.png">
-              </a>
-            </li>
-          </ul>
-        </div>
-    </div>
-</div>
-<script>
-  var homeLeftBgArr = '/./img/aside/78447966_p0.png,/./img/aside/69371030_p0.png,/./img/aside/74721741_p0.jpg,/./img/aside/79774870_p0.jpg,/./img/aside/79766252_p0.jpg,/./img/aside/QQ图片20190826221410.jpg,/./img/aside/73840160_p0.jpg,/./img/aside/61718906_p0.jpg,/./img/aside/75214268_p0.jpg'.split(',');
-  var homeLeftBgArrLen = homeLeftBgArr.length;
-  var leftBackgroundUrl = homeLeftBgArr[Math.floor(Math.random() * homeLeftBgArrLen)];
-  var homeLeftAsideNode = document.getElementsByClassName('left-aside')[0];
-  if (homeLeftAsideNode) {
-    homeLeftAsideNode.style.backgroundImage = 'url(' + leftBackgroundUrl + ')';
-  }
+  gitalk.render('comments');
 </script>
+
+
+        </div>
+      </div>
+    </div>
+   
+</main>
+<div class="footer">
+  <div class="info">
+    <p>
+    <a href="https://hexo.io"> Hexo </a> 强力驱动 |
+      <a href="https://github.com/Youthink/hexo-themes-yearn"> Yearn </a>
+      主题
+    </p>
+    <p>&copy; </p>
+  </div>
+</div>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 <script>//console
